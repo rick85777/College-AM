@@ -187,6 +187,28 @@ for (const r of published) {
 }
 upcoming.sort((a, b) => a.date.localeCompare(b.date));
 
+// 过去 12 个月内已经结束的节点，按月分组（用于"看清一年两轮的节奏"）
+const past = [];
+for (const r of published) {
+  for (const k of keyDates(r.edition)) {
+    const d = daysUntil(k.date, NOW);
+    if (d < 0 && d >= -365) {
+      past.push({ ...k, days: d, program: r.program, edition: r.edition });
+    }
+  }
+}
+past.sort((a, b) => b.date.localeCompare(a.date));
+const pastMonths = [];
+for (const u of past) {
+  const key = u.date.slice(0, 7);
+  let m = pastMonths.find((x) => x.key === key);
+  if (!m) {
+    m = { key, label: u.date.slice(0, 4) + " 年 " + Number(u.date.slice(5, 7)) + " 月", items: [] };
+    pastMonths.push(m);
+  }
+  m.items.push(u);
+}
+
 const soon = upcoming.filter((u) => u.days <= 60);
 
 // ---------------- 页面：首页 ----------------
@@ -512,12 +534,13 @@ const calendarPage = layout({
   body: `
 <section class="hero" style="border-top:0">
   <h1>日历</h1>
-  <p>下面是从今天起 400 天内、已经核实过的关键日期。订阅后到点自动提醒，不用记。</p>
+  <p>已核实的全部关键日期，按月排列。<b>灰色是已经过去的</b>，保留是为了让你看清一年两轮的节奏。订阅后到点自动提醒，不用记。</p>
   <div class="cta">
     <a class="btn primary" href="calendar/all.ics">订阅全部 (.ics)</a>
     <a class="btn" href="calendar/signup-only.ics">只订阅报名截止</a>
   </div>
 </section>
+
 <section>
   <h2>即将到来<span class="sub">${upcoming.length} 个节点</span></h2>
   <div class="countdown">
@@ -535,7 +558,34 @@ const calendarPage = layout({
     )
     .join("")}
   </div>
-</section>`,
+</section>
+
+${pastMonths.length === 0 ? "" : `
+<section>
+  <h2>已经结束<span class="sub">过去 12 个月，${past.length} 个节点</span></h2>
+  <p style="margin:-6px 0 14px;font-size:13px;color:var(--ink-3)">为什么保留：四六级、NCRE、教资都是一年两轮——看完上一轮的时间点，才知道下一轮大概什么时候开始报名。</p>
+  ${pastMonths
+    .map(
+      (m) => `
+  <h3 style="font-size:13px;color:var(--ink-3);font-weight:600;margin:20px 0 8px;letter-spacing:.04em">${m.label}</h3>
+  <div class="countdown past">
+  ${m.items
+    .map(
+      (u) => `<a class="cd-item past" href="p/${u.program.id}.html">
+    <div class="cd-days"><span class="n">${u.date.slice(8, 10)}</span><span class="u">${u.date.slice(5, 7)} 月</span></div>
+    <div class="cd-main">
+      <div class="t">${esc(u.program.name)}<span class="tag" style="margin-left:8px">${u.label}</span></div>
+      <div class="s">${esc(u.program.organizer)}</div>
+    </div>
+    <div class="cd-when">已结束</div>
+  </a>`
+    )
+    .join("")}
+  </div>`
+    )
+    .join("")}
+</section>`}
+`,
 });
 
 

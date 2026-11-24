@@ -291,3 +291,7 @@ footer .disclaimer { margin-top: 12px; padding: 10px 12px; background: var(--lin
   body { background: #fff; color: #000; }
   .card, .prov, .cd-item { box-shadow: none; }
 }
+.countdown.past .cd-item { opacity: .55; }
+.countdown.past .cd-item:hover { opacity: .8; }
+.countdown.past .cd-days .n { color: var(--ink-3); }
+.countdown.past .cd-when { color: var(--ink-3); }
