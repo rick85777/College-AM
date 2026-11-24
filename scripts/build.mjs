@@ -9,6 +9,8 @@ import path from "node:path";
 import { readProgramFiles, readMajors, flatten, isPublished, keyDates, daysUntil } from "../lib/load.mjs";
 import { buildCalendar } from "../lib/ics.mjs";
 import { validateProvinceSignup } from "../lib/province.mjs";
+import { loadAi } from "../lib/ai.mjs";
+import { renderAiPage } from "../lib/ai-page.mjs";
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
@@ -675,108 +677,10 @@ ${JOB_PORTALS.map(
 }
 
 // ---------------- 页面：AI 板块（做聚合，不做推荐） ----------------
-// 依据 docs/research/04-product-roadmap.md §3：
-// 不做"AI 驱动的个性化推荐"（冷启动 0 数据必崩，且黑箱破坏"可核查"人设）；
-// 做"AI 相关事物的结构化聚合"——赛事 / 岗位 / 课程与工具，全部走同一套外链索引模型。
-// 所有 URL 均实测 HTTP 200 后收录（2026-11-24）。
-const AI_GROUPS = [
-  {
-    id: "contest",
-    tab: "AI 赛事",
-    note: "AI 赛事的真痛点是生命周期短——从发布到截止常常只有 3 周。下面这些是长期开办、有稳定提交入口的平台，具体赛题与截止日期以平台当期公告为准。",
-    links: [
-      { name: "Kaggle Competitions", url: "https://www.kaggle.com/competitions", who: "Google", desc: "全球最大的数据科学竞赛平台。Featured / Research / Playground 三类，Research 类奖金最高。", tags: ["CV", "NLP", "表格"] },
-      { name: "阿里云天池", url: "https://tianchi.aliyun.com/competition", who: "阿里巴巴", desc: "国内场次最密的数据竞赛平台，产业赛题多，常与政府、企业联办。", tags: ["CV", "NLP", "推荐"] },
-      { name: "DataFountain", url: "https://www.datafountain.cn/competitions", who: "中科院计算所等", desc: "CCF 大数据与计算智能大赛（BDCI）的比赛平台，赛题偏工业界真实场景。", tags: ["CV", "NLP", "风控"] },
-      { name: "百度之星", url: "https://astar.baidu.com/", who: "百度", desc: "程序设计大赛，分初赛/复赛/决赛。算法方向含金量高，不限专业。", tags: ["算法"] },
-      { name: "华为昇腾社区", url: "https://www.hiascend.com/", who: "华为", desc: "昇腾 AI 相关赛事与开发者活动入口，国产算力生态相关赛题集中在此。", tags: ["推理部署", "多模态"] },
-      { name: "中国大学生计算机设计大赛", url: "https://jsjds.blcu.edu.cn/", who: "教育部高校计算机类专业教指委", desc: "设有 AI 赛道，属国家级学科竞赛，保研与学分认定中认可度较高。", tags: ["CV", "NLP", "多模态"] },
-    ],
-  },
-  {
-    id: "job",
-    tab: "AI 岗位",
-    note: "只跳转到企业的校招官网，不聚合岗位、不代投、不收集简历。为什么不在这里列出具体岗位：岗位有效期以天计，任何聚合都会滞后，而滞后的岗位信息比没有更糟。",
-    links: [
-      { name: "字节跳动 校园招聘", url: "https://job.bytedance.com/campus", who: "字节跳动", desc: "算法、推荐、CV、NLP 岗位的主要来源之一，实习与校招分开投递。", tags: ["推荐", "CV", "NLP"] },
-      { name: "百度 校园招聘", url: "https://talent.baidu.com/jobs/campus", who: "百度", desc: "搜索、自动驾驶、文心大模型相关方向，算法岗占比高。", tags: ["NLP", "CV", "推理部署"] },
-      { name: "腾讯 招聘", url: "https://careers.tencent.com/", who: "腾讯", desc: "校招与社招统一入口，可筛「技术类-算法」。", tags: ["推荐", "多模态"] },
-      { name: "阿里巴巴 招聘", url: "https://job.alibaba.com/", who: "阿里巴巴", desc: "达摩院、通义相关团队岗位在此发布，校招有独立批次。", tags: ["NLP", "多模态", "推理部署"] },
-      { name: "月之暗面（Kimi）", url: "https://www.moonshot.cn/", who: "月之暗面", desc: "大模型公司，招聘信息在官网页脚或公众号发布，团队规模小、岗位少但方向前沿。", tags: ["Agent", "推理部署"] },
-      { name: "深度求索（DeepSeek）", url: "https://www.deepseek.com/", who: "深度求索", desc: "同上的小团队大模型公司。这类公司通常不在招聘平台投放，只能盯官网。", tags: ["推理部署", "Agent"] },
-    ],
-  },
-  {
-    id: "learn",
-    tab: "AI 课程与工具",
-    note: "只收高校公开课、官方教程与官方文档。<b>不收付费课程、不接返佣、不做课程推荐</b>——这一栏的作用是「知道去哪学」，不是「替你选课」。",
-    links: [
-      { name: "Stanford CS229 · Machine Learning", url: "https://cs229.stanford.edu/", who: "Stanford", desc: "机器学习最经典的课程，讲义、作业、往年试卷全部公开。适合已具备线代与概率基础的人。", tags: ["基础"] },
-      { name: "MIT OpenCourseWare · AI", url: "https://ocw.mit.edu/search/?q=artificial%20intelligence", who: "MIT", desc: "MIT 人工智能相关公开课的检索入口，含 6.034 等课程的视频与讲义。", tags: ["基础"] },
-      { name: "《动手学深度学习》", url: "https://zh.d2l.ai/", who: "李沐等", desc: "中文教材 + 可运行代码 + 配套视频，从零实现到 Transformer，免费全文在线。零基础首选。", tags: ["基础", "CV", "NLP"] },
-      { name: "PyTorch 官方教程", url: "https://pytorch.org/tutorials/", who: "Meta / PyTorch", desc: "官方教程与文档。做项目时遇到问题，这里的答案比任何二手博客都准。", tags: ["工具"] },
-      { name: "ModelScope 魔搭", url: "https://www.modelscope.cn/", who: "阿里巴巴", desc: "国内可直连的模型与数据集社区，模型可直接下载与在线推理，不需要翻墙。", tags: ["工具", "推理部署"] },
-      { name: "Deep Learning Specialization", url: "https://www.coursera.org/specializations/deep-learning", who: "DeepLearning.AI", desc: "Coursera 上的深度学习专项课程。可免费旁听（不拿证书），适合系统过一遍概念。", tags: ["基础"] },
-    ],
-  },
-];
-
-function aiPage() {
-  return layout({
-    title: "AI 板块 · College-AM",
-    description: "AI 赛事、AI 岗位、AI 课程与工具的结构化聚合。只做索引与外链跳转，不做个性化推荐。",
-    current: "ai.html",
-    body: `
-<section class="hero">
-  <h1>AI 板块</h1>
-  <p>这一栏做的是<b>聚合</b>，不是<b>推荐</b>。没有"猜你喜欢"，没有算法排序——你能看到的就是全部，顺序是固定的人工排序。</p>
-  <div class="cta">
-    <a class="btn primary" href="#contest">AI 赛事 →</a>
-    <a class="btn" href="#job">AI 岗位 →</a>
-    <a class="btn" href="#learn">课程与工具 →</a>
-  </div>
-  <div class="meta">为什么不做 AI 推荐：见底部说明</div>
-</section>
-
-${AI_GROUPS.map(
-  (g) => `
-<section id="${g.id}">
-  <h2>${esc(g.tab)}<span class="sub">${g.links.length} 个入口</span></h2>
-  <p style="margin:-6px 0 14px;font-size:13px;color:var(--ink-3);line-height:1.8">${g.note}</p>
-  <div class="list two">
-  ${g.links
-    .map(
-      (l) => `<a class="card" href="${esc(l.url)}" target="_blank" rel="noopener nofollow" style="display:block">
-      <div class="row">
-        <span class="name">${esc(l.name)} ↗</span>
-      </div>
-      <div class="desc">${esc(l.desc)}</div>
-      <div style="margin-top:8px"><span class="tag">${esc(l.who)}</span>${l.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div>
-    </a>`
-    )
-    .join("")}
-  </div>
-</section>`
-).join("")}
-
-<section>
-  <h2>为什么不做"AI 推荐"</h2>
-  <div class="prov stack">
-    <span class="line"><dt>冷启动没有数据</dt> <dd>推荐系统依赖用户画像与行为数据。本站第一天的用户数是 0，任何"个性化"都只能靠猜——猜错的成本是用户从此不再信任所有条目。</dd></span>
-    <span class="line"><dt>黑箱破坏可核查性</dt> <dd>本站的全部价值在于"每个日期都能点回官方原文"。一旦排序由模型决定而无法解释，这个前提就不成立了。</dd></span>
-    <span class="line"><dt>AI 更适合放在后台</dt> <dd>字段抽取、实体归一、变更摘要——这些是 AI 该做的事，用户看不见，但决定了数据质量。前台不需要它。</dd></span>
-  </div>
-</section>
-
-<section>
-  <h2>赛事截止日期在哪里看</h2>
-  <p style="font-size:13.5px;color:var(--ink-2);line-height:1.85">
-    AI 赛事的截止日期<b>不进主日历</b>。原因很实际：一个赛事从发布到截止常常只有 3 周，而主日历的数据是人工核实后才发布的，
-    两者节奏对不上——勉强合并只会让主日历里塞满来不及核实的日期。要看当期赛题，请直接点上面的平台入口。
-  </p>
-</section>`,
-  });
-}
+// 依据 docs/research/09-ai-ia.md：109 条 / 6 组 / 21 节，9 个必填字段。
+// 渲染逻辑抽到 lib/ai-page.mjs，数据与校验在 data/ai.json + lib/ai.mjs。
+const AI = await loadAi();
+const aiHtml = renderAiPage(AI, { layout, esc });
 
 // ---------------- 页面：数据来源 ----------------
 const sourcesPage = layout({
@@ -1112,7 +1016,7 @@ const pages = [
   ["calendar.html", calendarPage],
   ["certs.html", listPage("cert", "考证", "学历之外的硬通货。每个条目都标注了报名与考试时间，以及官方原文链接。")],
   ["contests.html", listPage("contest", "竞赛", "对保研、求职真正有用的比赛。按含金量与专业相关度筛选，只收官方主办方。")],
-  ["ai.html", aiPage()],
+  ["ai.html", aiHtml],
   ["majors.html", majorsIndexPage],
   ["provinces.html", provincesPage()],
   ["zhaopin.html", zhaopinPage()],

@@ -123,6 +123,14 @@ a.card:hover { border-color: var(--accent); transform: translateY(-1px); }
 .card .desc { color: var(--ink-2); font-size: 13.5px; margin-top: 6px; }
 .card .tags { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
 
+/* 外部索引区块的免责声明 */
+.ai-disclaimer {
+  margin: 12px 0 0; padding: 10px 12px;
+  font-size: 12px; line-height: 1.75; color: var(--ink-3);
+  background: var(--paper-2); border: 1px dashed var(--line);
+  border-radius: 8px; overflow-wrap: anywhere;
+}
+
 /* ---------- 徽标 ---------- */
 .tag {
   display: inline-block; font-size: 11.5px; line-height: 1.6;
@@ -295,3 +303,99 @@ footer .disclaimer { margin-top: 12px; padding: 10px 12px; background: var(--lin
 .countdown.past .cd-item:hover { opacity: .8; }
 .countdown.past .cd-days .n { color: var(--ink-3); }
 .countdown.past .cd-when { color: var(--ink-3); }
+
+/* ---------- AI 板块（109 条，见 docs/research/09-ai-ia.md §6.3） ---------- */
+
+/* 锚点定位：粘性顶栏会盖住标题，桌面 56px / 移动端折行后约 90px */
+section[id] { scroll-margin-top: 72px; }
+@media (max-width: 560px) { section[id] { scroll-margin-top: 100px; } }
+
+.ai-note { margin: -6px 0 14px; font-size: 13px; color: var(--ink-3); line-height: 1.8; }
+
+h3 .sub { font-weight: 400; color: var(--ink-3); font-size: 12.5px; margin-left: 7px; }
+
+/* 组内的节内导航 */
+.ai-sections {
+  margin: -6px 0 16px; font-size: 12.5px; color: var(--ink-3); line-height: 2;
+}
+.ai-sections a {
+  color: var(--ink-2); border-bottom: 1px dotted var(--line);
+  padding-bottom: 1px;
+}
+.ai-sections a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+.ai-list { list-style: none; margin: 0 0 6px; padding: 0; display: grid; gap: 10px; }
+@media (min-width: 640px) { .ai-list { grid-template-columns: 1fr 1fr; } }
+
+.ai-item { display: block; break-inside: avoid; }
+.ai-card { display: block; }
+
+.ai-card .row { display: flex; align-items: baseline; gap: 10px; justify-content: space-between; }
+.ai-card .name { display: block; }
+.ai-org {
+  flex: 0 0 auto; max-width: 46%;
+  font-size: 11.5px; color: var(--ink-3);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.ai-card .desc { display: block; margin-top: 6px; }
+
+/* 全案最重要的一行：编辑判断，视觉上与客观描述区分 */
+.ai-fit {
+  display: block; margin-top: 8px; padding-left: 9px;
+  border-left: 2px solid var(--accent);
+  font-size: 12.5px; color: var(--ink-2); line-height: 1.7;
+}
+.ai-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 9px; }
+
+/* 折叠：原生 details，零 JS。必须与 <a> 同级，不能放进 <a>（interactive content 约束） */
+.ai-more {
+  margin: -1px 0 0; border: 1px solid var(--line); border-top: 0;
+  border-radius: 0 0 var(--radius) var(--radius);
+  background: var(--paper-2);
+}
+.ai-more > summary {
+  cursor: pointer; list-style: none; padding: 7px 16px;
+  font-size: 12px; color: var(--ink-3);
+}
+.ai-more > summary::-webkit-details-marker { display: none; }
+.ai-more > summary::marker { content: ""; }
+.ai-more > summary::before { content: "＋ "; }
+.ai-more[open] > summary::before { content: "－ "; }
+.ai-more > p {
+  margin: 0; padding: 2px 16px 12px;
+  font-size: 12.5px; color: var(--ink-2); line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.ai-more .tag { margin-right: 5px; }
+
+/* CSS-only 开关：隐藏需代理条目。input 必须与 section 同级且在其之前 */
+.ai-toggle-input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.ai-toggle {
+  display: inline-flex; align-items: center; gap: 7px; min-height: 44px;
+  margin: 4px 0 20px; padding: 0 15px; cursor: pointer;
+  font-size: 13px; color: var(--ink-2);
+  border: 1px solid var(--line); border-radius: 999px; background: var(--paper-2);
+  user-select: none;
+}
+.ai-toggle::before { content: "☐"; font-size: 14px; line-height: 1; }
+.ai-toggle:hover { border-color: var(--accent); color: var(--accent); }
+#hide-vpn:focus-visible + .ai-toggle { outline: 2px solid var(--accent); outline-offset: 2px; }
+#hide-vpn:checked + .ai-toggle { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+#hide-vpn:checked + .ai-toggle::before { content: "☑"; }
+/* 注：不用 :has()。它在中国的壳浏览器（QQ 14.9 / 百度 13.52 / UC 15.5）不支持，
+   代价是「某节条目全是 vpn 时会剩一个空标题」——空一行比白屏好。 */
+#hide-vpn:checked ~ section .ai-item[data-access="vpn"] { display: none; }
+
+.ai-jump { margin: 20px 0 0; font-size: 13px; color: var(--ink-3); }
+.ai-jump a { color: var(--accent); }
+
+@media (max-width: 560px) {
+  .ai-card { padding: 13px 14px; }
+  /* 移动端机构名换行到第二行，不省略——机构名是可信度信号，截断反而损失信息 */
+  .ai-card .row { flex-wrap: wrap; gap: 2px 8px; }
+  .ai-org { max-width: 100%; white-space: normal; overflow: visible; text-overflow: clip; font-size: 11px; }
+  .ai-fit { font-size: 12px; }
+  .ai-more > summary { padding: 8px 14px; }
+  .ai-more > p { padding: 2px 14px 12px; }
+  .ai-jump { margin-top: 16px; }
+}

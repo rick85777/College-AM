@@ -122,7 +122,42 @@ pwaBad += noManifest;
 console.log("  PWA       manifest " + (fs.existsSync(mfPath) ? "✓" : "✗") + "，sw.js " + (fs.existsSync(swPath) ? "✓" : "✗") + "，问题 " + pwaBad);
 problems += pwaBad;
 
-// ---------- 6. 移动端溢出（可选，需无头浏览器） ----------
+
+// ---------- 6. AI 板块 ----------
+// 依据 docs/research/09-ai-ia.md §5：条目上限、必填字段、可核查性三件套
+const aiPath = path.join(DIST, "ai.html");
+let aiBad = 0;
+if (!fs.existsSync(aiPath)) { console.log("  ✗ 缺少 ai.html"); aiBad++; }
+else {
+  const ai = fs.readFileSync(aiPath, "utf8");
+  const bytes = fs.statSync(aiPath).size;
+  // 体积红线：102 条目标 <130KB；目前 109 条
+  if (bytes > 130 * 1024) { console.log("  ✗ ai.html 体积 " + (bytes / 1024).toFixed(1) + "KB，超过 130KB 红线"); aiBad++; }
+  const secN = (ai.match(/<section id="/g) || []).length;
+  if (secN !== 6) { console.log("  ✗ ai.html 分区数为 " + secN + "，应为 6"); aiBad++; }
+  const cardN = (ai.match(/class="card ai-card"/g) || []).length;
+  if (cardN < 100) { console.log("  ✗ ai.html 条目仅 " + cardN + " 条（<100）"); aiBad++; }
+  // 每条都必须有 fit（「谁该用/什么时候别用」），这是全案最重要的一行
+  const fitN = (ai.match(/class="ai-fit"/g) || []).length;
+  if (fitN !== cardN) { console.log("  ✗ fit 行 " + fitN + " 条，与条目数 " + cardN + " 不一致"); aiBad++; }
+  // 每条都必须标出实测验证日期
+  const verN = (ai.match(/ 验证<\/span>/g) || []).length;
+  if (verN < cardN) { console.log("  ✗ 验证日期仅 " + verN + " 处，少于条目数 " + cardN); aiBad++; }
+  // 每条都必须有 access 标记（能直连是实测结论，不能默认）
+  const accN = (ai.match(/data-access="/g) || []).length;
+  if (accN !== cardN) { console.log("  ✗ access 标记 " + accN + " 处，与条目数 " + cardN + " 不一致"); aiBad++; }
+  // 折叠详情必须与 <a> 同级（interactive content 约束）
+  if (!/<details class="ai-more"/.test(ai)) { console.log("  ✗ 缺少 </details> 折叠详情块"); aiBad++; }
+  // 站外链接必须带 noopener
+  const extLinks = (ai.match(/<a [^>]*href="https?:[^"]*"[^>]*>/g) || []);
+  const noRel = extLinks.filter((a) => /target="_blank"/.test(a) && !/rel="[^"]*noopener/.test(a));
+  if (noRel.length) { console.log("  ✗ " + noRel.length + " 个外链缺 rel=noopener"); aiBad++; }
+  console.log("  AI 板块   " + (bytes / 1024).toFixed(1) + "KB，" + secN + " 分区 / " + cardN + " 条，fit " + fitN + "，问题 " + aiBad);
+}
+if (aiBad) console.log("  （ai.html 缺失或异常，先 npm run build）");
+problems += aiBad;
+
+// ---------- 7. 移动端溢出（可选，需无头浏览器） ----------
 const CANDIDATES = [
   "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
   "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe",

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { readProgramFiles, readMajors } from "../lib/load.mjs";
 import { validateFile } from "../lib/schema.mjs";
+import { loadAi, validateAi } from "../lib/ai.mjs";
 
 const C = {
   red: (s) => "\x1b[31m" + s + "\x1b[0m",
@@ -80,12 +81,33 @@ for (const c of majors.channels) {
   console.log(flag + ` ${c.name.padEnd(18, " ")} core=${String(core).padEnd(3)} total=${all}`);
 }
 
+
+// AI 板块：109 条外链索引（docs/research/09-ai-ia.md）
+console.log(C.bold("\nAI 板块检查\n"));
+const ai = await loadAi();
+const aiRes = validateAi(ai);
+let aiErrors = 0;
+for (const e of aiRes.errors) { console.log("      " + C.red("ERROR") + " " + e); aiErrors++; }
+for (const w of aiRes.warnings) { console.log("      " + C.yellow("WARN ") + " " + w); }
+const st = aiRes.stats;
+console.log(
+  (aiErrors ? C.red("  ✗ ") : C.green("  ✓ ")) +
+  "data/ai.json" + C.dim(" (" + st.groups + " 组 / " + st.sections + " 节 / " + st.items + " 条)")
+);
+console.log(
+  "      需代理 " + st.vpn + " 条（" + (st.vpnRatio * 100).toFixed(1) + "%），第三方整理 " + st.aggregators + " 条；" +
+  "免费 " + (st.byCost.free || 0) + " / 部分免费 " + (st.byCost.freemium || 0) + " / 付费 " + (st.byCost.paid || 0)
+);
+totalErrors += aiErrors;
+totalWarnings += aiRes.warnings.length;
+
 console.log(C.bold("\n汇总\n"));
 console.log(`  文件      ${files.length}`);
 console.log(`  条目      ${totalPrograms}`);
 console.log(`  届次      ${totalEditions}`);
 console.log(`  已发布    ${C.green(String(published))}`);
 console.log(`  待人工    ${C.yellow(String(pending))}`);
+console.log(`  AI 条目   ${st.items}` + C.dim(`（${st.groups} 组 / ${st.sections} 节）`));
 console.log(`  错误      ${totalErrors ? C.red(String(totalErrors)) : "0"}`);
 console.log(`  警告      ${totalWarnings ? C.yellow(String(totalWarnings)) : "0"}`);
 

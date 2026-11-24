@@ -2,6 +2,8 @@
 
 > 把散落在 6 个官网里的四六级、计算机等级、教资、软考、数模、国创赛关键日期，收进一份可以订阅的日历。
 > 每条都标注**来源链接 / 抓取时间 / 可信等级**。不写"预计"，不猜日期——官方没公布就显示"未公布"。
+>
+> 另有一个 `ai.html`：**109 个 AI 相关入口**（赛事 / 岗位 / 学习路径 / 工具链 / 免费额度 / 信息源），每条写明"谁该用、什么时候别用"、能否直连、最后验证日期。做聚合，不做推荐。
 
 ---
 
@@ -18,6 +20,7 @@
 | 招聘**只做外链跳转**，页面上不存在站内申请表单 | ❌ 不代收职位、不做付费发岗、不撮合 |
 | 官方原文一键跳转 | ❌ 不做站内投递、不接收简历 |
 | 过期条目降级为"已结束"，保留 URL | ❌ 不做 AI 生成正文、不做个性化推荐 |
+| AI 板块：109 个入口，每条 9 个必填字段（含 `fit`） | ❌ 不做"猜你喜欢"、不做算法排序、不收返佣 |
 
 ### 页面清单（27 页）
 
@@ -55,7 +58,7 @@ m/*.html          7 个职业出口频道
 
 ```bash
 node scripts/validate.mjs    # 校验 data/ 下的所有 JSON
-node scripts/test.mjs        # 跑测试（26 个断言）
+node scripts/test.mjs        # 跑测试（35 个断言）
 node scripts/build.mjs       # 生成静态站到 dist/
 node scripts/dev.mjs 4173    # 本地预览 http://127.0.0.1:4173
 
@@ -106,6 +109,7 @@ $s.Save()
 data/
   majors.json                 # 职业出口频道定义（不是学院）
   programs/*.json             # 每个条目一个文件（考证/竞赛/招聘）
+  ai.json                     # AI 板块 109 条外链索引（6 组 / 21 节）
   province-signup.json        # 省级报名时间窗口（信息差核心）
   review-queue.json           # 抓取器产出的候选变更（等人工审核）
   schema/program.schema.json  # JSON Schema 契约
@@ -114,6 +118,8 @@ lib/
   load.mjs                    # 数据加载 + 关键节点提取
   ics.mjs                     # RFC 5545 .ics 生成器
   province.mjs                # 省级数据校验器
+  ai.mjs                      # AI 板块校验器（fit 长度 / verified 过期 / 代理占比）
+  ai-page.mjs                 # AI 板块渲染器
 scripts/
   validate.mjs                # 校验 + 频道覆盖检查
   fetch.mjs                   # 抓取器（静态优先，产出候选变更）
@@ -219,7 +225,7 @@ signupStart, signupEnd, eventStart, eventEnd, feeCny, feeNote
 
 ## 路线图
 
-- **M0（当前，已完成）**：10 个条目 / 8 个已核实届次 / 7 个职业出口频道 / 27 个页面 / 12 个 .ics / PWA 可安装 / 390px 零溢出 / 26 个测试
+- **M0（当前，已完成）**：10 个条目 / 8 个已核实届次 / 7 个职业出口频道 / 27 个页面 / 12 个 .ics / 109 个 AI 入口 / PWA 可安装 / 390px 零溢出 / 35 个测试
 - **M1**：30 个条目、5 个频道满负荷、自动抓取 1 个源（bm.ruankao.org.cn 省级表格）、订阅邮件
 - **M2**：开放投稿、共建人制度、schema v1.0 冻结
 

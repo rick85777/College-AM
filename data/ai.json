@@ -1,0 +1,2014 @@
+{
+  "schemaVersion": "1.0",
+  "updatedAt": "2026-11-24",
+  "groups": [
+    {
+      "id": "contest",
+      "title": "AI 赛事",
+      "note": "只收长期开办、有稳定提交入口的赛事。具体赛题与截止日期以平台当期公告为准——一个赛事从发布到截止常常只有 3 周，我们没有能力核实到天，就不假装能核实。",
+      "sections": [
+        {
+          "id": "contest-national",
+          "title": "全国学科竞赛",
+          "items": [
+            {
+              "id": "jsjds-ai",
+              "name": "中国大学生计算机设计大赛",
+              "url": "https://jsjds.blcu.edu.cn/",
+              "org": "教育部高校计算机类专业教指委",
+              "desc": "国家级学科竞赛，设人工智能与软件应用赛道，多数高校按学科竞赛认定学分。",
+              "fit": "想拿保研加分的大二大三优先；要先过校内选拔，个人报不上。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "各校名额由教务处分配，须先走校内选拔。",
+              "tags": [
+                "CV",
+                "NLP"
+              ]
+            },
+            {
+              "id": "tiaozhanbei",
+              "name": "挑战杯",
+              "url": "https://www.tiaozhanbei.net/",
+              "org": "共青团中央等",
+              "desc": "全国大学生课外学术科技作品竞赛，含人工智能与信息技术方向。",
+              "fit": "有成型作品、能组跨专业团队的再去；大一只做校赛练手。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "校赛—省赛—国赛三级，周期近一年，中途退出的人最多。",
+              "tags": [
+                "作品赛"
+              ]
+            },
+            {
+              "id": "mcm",
+              "name": "全国大学生数学建模竞赛",
+              "url": "https://www.mcm.edu.cn/",
+              "org": "中国工业与应用数学学会",
+              "desc": "每年 9 月开赛，三天内完成建模、求解与论文，近年赛题大量涉及数据分析。",
+              "fit": "想验证数据处理与论文写作能力就报；不会分工的队伍三天必崩。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "2026 年赛题 9 月 10 日 18:00 发布，89543 支队参赛。",
+              "tags": [
+                "建模",
+                "数据"
+              ]
+            },
+            {
+              "id": "lanqiao",
+              "name": "蓝桥杯",
+              "url": "https://dasai.lanqiao.cn/",
+              "org": "工信部人才交流中心",
+              "desc": "全国软件和信息技术专业人才大赛，设 Python/C++/Java 等组，另有 AI 赛道。",
+              "fit": "大一大二拿来练算法最划算；题目偏基础，别指望它给算法岗加分。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "paid",
+              "kind": "official",
+              "note": "报名费按组别收取；首页是 SPA 壳，首屏 HTML 仅 1.4KB，必须浏览器打开。",
+              "tags": [
+                "算法"
+              ]
+            },
+            {
+              "id": "cpipc",
+              "name": "中国研究生创新实践系列大赛",
+              "url": "https://cpipc.acge.org.cn/",
+              "org": "教育部学位与研究生教育发展中心",
+              "desc": "面向研究生的系列赛事平台，含人工智能、智慧城市、公共管理等主题赛。",
+              "fit": "在读研究生才报；本科生别点，报名系统会直接拦。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "同一平台下有十余个主题赛，报名前先确认自己学校有没有参赛资格。",
+              "tags": [
+                "研究生"
+              ]
+            },
+            {
+              "id": "raicom",
+              "name": "睿抗机器人开发者大赛",
+              "url": "https://www.robotcontest.cn/",
+              "org": "工信部人才交流中心",
+              "desc": "机器人方向国家级赛事，含视觉识别、ROS 与自动驾驶仿真赛项。",
+              "fit": "有机器人或仿真环境基础的团队报；纯算法背景进去很吃力。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "paid",
+              "kind": "official",
+              "note": "赛项装备要求高，多数队伍靠学校实验室支持。",
+              "tags": [
+                "机器人",
+                "仿真"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "contest-platform",
+          "title": "平台常规赛",
+          "items": [
+            {
+              "id": "kaggle",
+              "name": "Kaggle Competitions",
+              "url": "https://www.kaggle.com/competitions",
+              "org": "Google",
+              "desc": "全球最大的数据科学竞赛平台，分 Featured / Research / Playground 三类。",
+              "fit": "有 Python 和 pandas 基础再进；纯新手先去 learn 组把 d2l 前几章过完。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "Research 类奖金最高；Playground 类允许随时提交，最适合练手。",
+              "tags": [
+                "CV",
+                "NLP",
+                "表格"
+              ]
+            },
+            {
+              "id": "tianchi",
+              "name": "阿里云天池",
+              "url": "https://tianchi.aliyun.com/competition",
+              "org": "阿里巴巴",
+              "desc": "国内场次最密的数据竞赛平台，产业赛题多，常与政府、企业联办。",
+              "fit": "想找带真实业务数据的赛题就进；纯学术向的题目这里偏少。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "部分赛题要求用阿里云算力，先看清规则再报名。",
+              "tags": [
+                "CV",
+                "NLP",
+                "推荐"
+              ]
+            },
+            {
+              "id": "datafountain",
+              "name": "DataFountain",
+              "url": "https://www.datafountain.cn/competitions",
+              "org": "中科院计算所等",
+              "desc": "CCF 大数据与计算智能大赛（BDCI）的比赛平台，赛题偏工业界真实场景。",
+              "fit": "想刷简历上的比赛经历可以来；赛题质量随主办方波动，报名前先看数据规模。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "平台同时承办多个赛事，注意区分主办方与赛题归属。",
+              "tags": [
+                "CV",
+                "NLP",
+                "风控"
+              ]
+            },
+            {
+              "id": "aistudio-contest",
+              "name": "百度 AI Studio 竞赛",
+              "url": "https://aistudio.baidu.com/competition",
+              "org": "百度",
+              "desc": "飞桨生态的竞赛平台，提供免费算力，赛题以 CV 与 NLP 为主。",
+              "fit": "没有 GPU、想白嫖算力打比赛的人首选；绑定飞桨框架，别指望用 PyTorch。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "免费算力按天配额，跑大模型训练会很快用完。",
+              "tags": [
+                "CV",
+                "NLP",
+                "免费算力"
+              ]
+            },
+            {
+              "id": "heywhale",
+              "name": "和鲸 Heywhale",
+              "url": "https://www.heywhale.com/",
+              "org": "和鲸科技",
+              "desc": "数据科学社区与竞赛平台，赛题多来自企业与高校联合主办。",
+              "fit": "想找小规模、竞争没那么卷的赛题可以看；头部赛事的含金量不如天池。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "在线 Notebook 免费额度有限，重度使用需付费。",
+              "tags": [
+                "数据科学"
+              ]
+            },
+            {
+              "id": "biendata",
+              "name": "Biendata",
+              "url": "https://www.biendata.xyz/",
+              "org": "Biendata",
+              "desc": "面向科研与产业的数据竞赛平台，赛题偏学术，多与会议联合举办。",
+              "fit": "做科研、想找可复现数据集的人适合；赛程更新不频繁，别把它当主战场。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "部分赛题已结束但仍保留数据，可当公开数据集用。",
+              "tags": [
+                "科研"
+              ]
+            },
+            {
+              "id": "ccf",
+              "name": "中国计算机学会 CCF",
+              "url": "https://www.ccf.org.cn/",
+              "org": "中国计算机学会",
+              "desc": "CCF CSP 认证与大数据与计算智能大赛的主办方站点，赛事与认证信息在此发布。",
+              "fit": "要考 CSP 认证或查 CCF 系列赛事公告的进；不打算走这条线的可以跳过。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "official",
+              "note": "CSP 认证收费，成绩被部分企业当笔试参考。",
+              "tags": [
+                "认证"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "contest-vendor",
+          "title": "厂商赛与竞赛索引",
+          "items": [
+            {
+              "id": "astar",
+              "name": "百度之星",
+              "url": "https://astar.baidu.com/",
+              "org": "百度",
+              "desc": "程序设计大赛，分初赛、复赛、决赛，算法方向含金量较高，不限专业。",
+              "fit": "算法基础扎实、想拿大厂直通面试的人报；只学 AI 不练算法的人过不了初赛。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "决赛成绩优秀者可直接进百度校招绿色通道。",
+              "tags": [
+                "算法"
+              ]
+            },
+            {
+              "id": "hiascend",
+              "name": "华为昇腾社区",
+              "url": "https://www.hiascend.com/",
+              "org": "华为",
+              "desc": "昇腾 AI 相关赛事与开发者活动的统一入口，国产算力生态赛题集中在此。",
+              "fit": "课程或实验室用昇腾卡的人必看；纯 GPU 背景的人要先补 CANN 那一套。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "赛事入口在社区二级页，站点改版频繁，找不到就走搜索。",
+              "tags": [
+                "推理部署",
+                "国产算力"
+              ]
+            },
+            {
+              "id": "xfyun-ai",
+              "name": "科大讯飞 AI 开发者大赛",
+              "url": "https://www.xfyun.cn/",
+              "org": "科大讯飞",
+              "desc": "讯飞开放平台的赛事入口，语音、NLP 方向的赛题长期开办。",
+              "fit": "做语音或中文 NLP 方向的人值得看；纯 CV 方向的赛题很少。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "报名需先注册开发者账号并创建应用。",
+              "tags": [
+                "语音",
+                "NLP"
+              ]
+            },
+            {
+              "id": "huaweicloud-competition",
+              "name": "华为云大赛",
+              "url": "https://competition.huaweicloud.com/",
+              "org": "华为云",
+              "desc": "华为云主办的系列赛事平台，含 AI 应用、鲲鹏与昇腾赛道。",
+              "fit": "学校与华为有合作项目的人优先；个人报名要留意赛题是否限定高校名单。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "部分赛道要求使用华为云资源，会产生费用。",
+              "tags": [
+                "云",
+                "国产算力"
+              ]
+            },
+            {
+              "id": "saikr",
+              "name": "赛氪",
+              "url": "https://www.saikr.com/",
+              "org": "赛氪（第三方）",
+              "desc": "竞赛信息聚合站，覆盖学科竞赛、创新创业与部分 AI 赛事。",
+              "fit": "只想先知道「最近有什么比赛」可以用；报名一律回主办方官网，别在这里交钱。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "aggregator",
+              "note": "二手信息，报名时间与主办方官网可能不一致，以官网为准。",
+              "tags": [
+                "索引"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "job",
+      "title": "AI 岗位",
+      "note": "只跳转到企业的招聘官网，不聚合岗位、不代投、不收集简历。为什么不列出具体岗位：岗位有效期以天计，任何聚合都会滞后，而滞后的岗位信息比没有更糟。本科想进 AI，现实入口是推理与工程岗，不是算法研究岗——这一条有 JD 原始数据支撑，写在下面的说明里。",
+      "sections": [
+        {
+          "id": "job-llm",
+          "title": "大模型公司",
+          "items": [
+            {
+              "id": "kimi",
+              "name": "月之暗面 Kimi",
+              "url": "https://careers.kimi.com/",
+              "org": "月之暗面",
+              "desc": "Kimi 系列模型的研发方，独立招聘域，校招与社招在同一入口。",
+              "fit": "想做长上下文与 Agent 方向的人看；团队规模小，岗位数常年个位数。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "不再使用 moonshot.cn 的首页跳转，那个页面没有招聘入口。",
+              "tags": [
+                "大模型",
+                "Agent"
+              ]
+            },
+            {
+              "id": "deepseek",
+              "name": "深度求索 DeepSeek",
+              "url": "https://talent.deepseek.com/",
+              "org": "深度求索",
+              "desc": "DeepSeek 系列模型的研发方，独立招聘域，岗位以研究与 Infra 为主。",
+              "fit": "偏系统与训练 Infra 方向的人重点看；页面是 SPA 壳，必须浏览器打开。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "首屏 HTML 仅约 600 字节，脚本抓不到岗位，别指望用爬虫盯它。",
+              "tags": [
+                "大模型",
+                "Infra"
+              ]
+            },
+            {
+              "id": "minimax",
+              "name": "MiniMax",
+              "url": "https://www.minimax.cn/careers",
+              "org": "MiniMax",
+              "desc": "规则写得最清楚的一家：Top Talent 全年开放，2027 届不限毕业时间。",
+              "fit": "想找「全年可投、不看毕业月份」的岗位就来；其他家多数还是批次制。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "原文写明「优秀不受毕业时间与学历束缚」，但筛选标准未公开。",
+              "tags": [
+                "大模型",
+                "全年滚动"
+              ]
+            },
+            {
+              "id": "zhipu",
+              "name": "智谱 AI",
+              "url": "https://www.zhipuai.cn/zh",
+              "org": "智谱",
+              "desc": "GLM 系列模型的研发方，招聘入口在官网导航里，无独立招聘子域。",
+              "fit": "想投国产大模型基座团队的人看；careers.zhipuai.cn 不存在，别引那个地址。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "招聘页在官网内，需先点「加入我们」。",
+              "tags": [
+                "大模型"
+              ]
+            },
+            {
+              "id": "baichuan",
+              "name": "百川智能",
+              "url": "https://www.baichuan-ai.com/",
+              "org": "百川智能",
+              "desc": "大模型公司，官网为 SPA，招聘入口存在但未在首页 HTML 中检出。",
+              "fit": "关注医疗与搜索方向大模型的人看；招聘入口要进站自己找，属于低优先。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "首次访问常超时，重试可通。招聘入口未经人工核实。",
+              "tags": [
+                "大模型"
+              ]
+            },
+            {
+              "id": "lingyiwanwu",
+              "name": "零一万物",
+              "url": "https://www.lingyiwanwu.com/",
+              "org": "零一万物",
+              "desc": "大模型公司，原域 01.ai 已 301 到现域，导航栏有「加入我们」。",
+              "fit": "想看中小规模大模型团队的人可以投；公司方向调整较频繁，投前先看最新动态。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "招聘信息也可能只发在公众号，官网不一定同步。",
+              "tags": [
+                "大模型"
+              ]
+            },
+            {
+              "id": "modelbest",
+              "name": "面壁智能",
+              "url": "https://modelbest.cn/",
+              "org": "面壁智能",
+              "desc": "端侧大模型方向的公司，导航栏有「加入我们」。",
+              "fit": "做模型压缩、端侧推理的人值得看；首页体积约 660KB，手机打开会慢。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "校招与社招共用同一入口。",
+              "tags": [
+                "端侧",
+                "推理部署"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "job-bigtech",
+          "title": "互联网大厂",
+          "items": [
+            {
+              "id": "bytedance",
+              "name": "字节跳动 校园招聘",
+              "url": "https://jobs.bytedance.com/campus",
+              "org": "字节跳动",
+              "desc": "算法、推荐、CV、NLP 岗位的主要来源之一，实习与校招分开投递。",
+              "fit": "8 月就开的提前批值得早投；毕业月份被写死在一年区间里，差一个月就进不去。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "页面内嵌配置自相矛盾（「面向 2027 届」vs「招聘范围 2024.9–2025.8」），后者是旧配置。",
+              "tags": [
+                "推荐",
+                "CV",
+                "NLP"
+              ]
+            },
+            {
+              "id": "baidu",
+              "name": "百度 校园招聘",
+              "url": "https://talent.baidu.com/jobs/campus",
+              "org": "百度",
+              "desc": "原文写「面向 2026 年 9 月至 2027 年 8 月毕业的在校生」，五大类岗位。",
+              "fit": "毕业时间落在那个 12 个月区间里才投得进去；差一个月系统就拦。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "AIDU 计划单独招顶尖 AI 校招生，与常规校招是两条线。",
+              "tags": [
+                "NLP",
+                "CV",
+                "推理部署"
+              ]
+            },
+            {
+              "id": "tencent-join",
+              "name": "腾讯 校园招聘",
+              "url": "https://join.qq.com/",
+              "org": "腾讯",
+              "desc": "校招主站，首屏 HTML 仅 2KB，是 SPA，具体岗位要求要去 JD 库看。",
+              "fit": "要投腾讯校招的从这里进；想看「本科能不能进」得去 JD 库查原文。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "岗位详情与学历要求不在这个站，见下一条。",
+              "tags": [
+                "校招"
+              ]
+            },
+            {
+              "id": "tencent-jd",
+              "name": "腾讯 招聘 JD 库",
+              "url": "https://careers.tencent.com/",
+              "org": "腾讯",
+              "desc": "JD 全文公开可检索，学历与年限写在原文里，是核对门槛最方便的一手源。",
+              "fit": "想自己验证「这个岗要不要硕士」的人必用；比任何求职攻略都准。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "提供公开 API（tencentcareer/api/post/Query），可按关键词取 JD 列表。",
+              "tags": [
+                "JD",
+                "可检索"
+              ]
+            },
+            {
+              "id": "alibaba",
+              "name": "阿里巴巴 校园招聘",
+              "url": "https://talent.alibaba.com/campus",
+              "org": "阿里巴巴",
+              "desc": "达摩院、通义相关团队的校招入口，会 301 到集团招聘首页。",
+              "fit": "想投通义与达摩院的人走这里；具体团队要在站内筛，没有直达链接。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "旧域 job.alibaba.com 已不是主入口。",
+              "tags": [
+                "NLP",
+                "多模态",
+                "推理部署"
+              ]
+            },
+            {
+              "id": "huawei",
+              "name": "华为 招聘",
+              "url": "https://career.huawei.com/cn/",
+              "org": "华为",
+              "desc": "校招与社招统一入口，首页资讯区会发批次进度，可当时间线旁证。",
+              "fit": "想投昇腾、盘古相关方向的人看；官网只发批次公告，不打统一日历。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "2026-11-06 资讯区仍在发 2027 届面试进度，说明 11 月还在面。",
+              "tags": [
+                "校招",
+                "国产算力"
+              ]
+            },
+            {
+              "id": "meituan",
+              "name": "美团 招聘",
+              "url": "https://zhaopin.meituan.com/web/home",
+              "org": "美团",
+              "desc": "校招与社招共用入口，推荐算法与机器学习平台岗位集中在此。",
+              "fit": "做推荐、搜索、运筹方向的人重点看；首次访问可能超时，重试即可。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "校招批次在站内单独分组。",
+              "tags": [
+                "推荐",
+                "运筹"
+              ]
+            },
+            {
+              "id": "kuaishou",
+              "name": "快手 招聘",
+              "url": "https://zhaopin.kuaishou.cn/",
+              "org": "快手",
+              "desc": "校招与社招入口，短视频推荐与多模态方向岗位较多。",
+              "fit": "做推荐与多模态的人看；域名是 zhaopin.kuaishou.cn。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "站内校招入口在顶部导航。",
+              "tags": [
+                "推荐",
+                "多模态"
+              ]
+            },
+            {
+              "id": "xiaohongshu",
+              "name": "小红书 招聘",
+              "url": "https://job.xiaohongshu.com/",
+              "org": "小红书",
+              "desc": "校招与社招入口，推荐、搜索与内容理解方向岗位集中。",
+              "fit": "做内容理解与多模态的人值得看；首次访问可能超时。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "岗位数量少于一线大厂，但方向与业务贴合度高。",
+              "tags": [
+                "推荐",
+                "多模态"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "job-research",
+          "title": "研究院与科研实习",
+          "items": [
+            {
+              "id": "msra",
+              "name": "微软亚洲研究院",
+              "url": "https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/",
+              "org": "微软",
+              "desc": "MSRA 官方页，研究岗与实习生招聘信息在此发布。",
+              "fit": "有论文或强工程能力、想走研究路线的人看；本科生以实习为主，正职竞争极激烈。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "www.msra.cn 已无法访问，不要引那个地址。",
+              "tags": [
+                "研究院"
+              ]
+            },
+            {
+              "id": "shlab",
+              "name": "上海人工智能实验室",
+              "url": "https://www.shlab.org.cn/",
+              "org": "上海人工智能实验室",
+              "desc": "国家级 AI 实验室，OpenMMLab 等开源项目的所在地，有联培与实习计划。",
+              "fit": "想读研或走科研路线的人重点看；招聘与联培信息分散在多个栏目。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "另有独立招聘站点，官网导航里找「加入我们」。",
+              "tags": [
+                "研究院",
+                "开源"
+              ]
+            },
+            {
+              "id": "baai",
+              "name": "北京智源人工智能研究院",
+              "url": "https://www.baai.ac.cn/",
+              "org": "智源研究院",
+              "desc": "非营利 AI 研究机构，办有悟道系列模型与智源大会。",
+              "fit": "想做基础研究、能接受非大厂薪资的人看；岗位以研究员与工程师为主。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "实习生招聘按项目组走，官网不一定同步。",
+              "tags": [
+                "研究院"
+              ]
+            },
+            {
+              "id": "ict",
+              "name": "中科院计算技术研究所",
+              "url": "https://www.ict.ac.cn/",
+              "org": "中国科学院",
+              "desc": "国内计算机领域的老牌研究所，研究生招生与科研岗信息在此发布。",
+              "fit": "想考研或读博、走学术路线的人看；这不是企业招聘站，是招生与人事入口。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "招生信息在「研究生教育」栏目，与企业校招是两套流程。",
+              "tags": [
+                "科研",
+                "深造"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "job-foreign",
+          "title": "外企",
+          "items": [
+            {
+              "id": "nvidia",
+              "name": "NVIDIA 中国 招聘",
+              "url": "https://www.nvidia.cn/about-nvidia/careers/",
+              "org": "NVIDIA",
+              "desc": "GPU 与推理框架方向的核心岗位来源，校招与社招同站。",
+              "fit": "做 CUDA、算子、推理加速的人首选；纯算法背景不吃香，看的是底层功力。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "国内团队规模有限，岗位更新慢。",
+              "tags": [
+                "Infra",
+                "推理部署"
+              ]
+            },
+            {
+              "id": "amazon",
+              "name": "Amazon 招聘",
+              "url": "https://www.amazon.jobs/zh/",
+              "org": "Amazon",
+              "desc": "亚马逊全球招聘站的中文界面，含中国区与海外岗位。",
+              "fit": "想去外企、能接受英文面试的人看；国内 AI 岗位数量远少于美国。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "投递前先确认岗位的工作地点与签证要求。",
+              "tags": [
+                "外企"
+              ]
+            },
+            {
+              "id": "intel",
+              "name": "Intel 中国",
+              "url": "https://www.intel.cn/",
+              "org": "Intel",
+              "desc": "英特尔中国站，招聘入口在站内，方向偏芯片、编译器与推理加速。",
+              "fit": "做 AI 编译器、异构计算的人看；招聘页不在首页，要进「职业发展」栏目。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "会 301 到 content/www/cn/zh/homepage.html，属正常。",
+              "tags": [
+                "外企",
+                "芯片"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "learn",
+      "title": "学习路径",
+      "note": "这一栏不是课程推荐。按「你现在能做什么」分三条路径，每条走到哪一步、怎么算学会，都写死了。不排名、不评分、不接返佣——只按「什么时候用得上」排序。",
+      "pathNote": true,
+      "sections": [
+        {
+          "id": "learn-path-a",
+          "title": "路径 A · 零基础（12–16 周）",
+          "items": [
+            {
+              "id": "liaoxuefeng",
+              "name": "廖雪峰 Python 教程",
+              "url": "https://liaoxuefeng.com/books/python/introduction/index.html",
+              "org": "廖雪峰",
+              "desc": "中文原创 Python 教程，讲工程习惯（虚拟环境、模块、异常）比讲语法多。",
+              "fit": "A1 主线。非科班最缺的不是语法，是「代码怎么组织」，这本正好补。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "只读前 6 章就够，后面的 Web 与数据库部分与 ML 无关。",
+              "tags": [
+                "A1",
+                "Python"
+              ]
+            },
+            {
+              "id": "python-100-days",
+              "name": "Python-100-Days",
+              "url": "https://github.com/jackfrued/Python-100-Days",
+              "org": "骆昊",
+              "desc": "按天给任务的 Python 学习仓库，中文原创，覆盖从语法到数据分析。",
+              "fit": "需要「有人安排今天做什么」的人用；自学容易半途而废的选这个。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "前 15 天对应 A1 阶段，后面的 Django 部分可以跳过。",
+              "tags": [
+                "A1",
+                "练习"
+              ]
+            },
+            {
+              "id": "kaggle-learn-python",
+              "name": "Kaggle Learn · Python",
+              "url": "https://www.kaggle.com/learn",
+              "org": "Kaggle",
+              "desc": "交互式 Python 与机器学习微课，每节 3–5 小时，浏览器里直接跑代码。",
+              "fit": "A2 的数据处理入门用它最快；不用配环境，缺点是不讲原理。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "需要 Kaggle 账号；免费 GPU 每周 30 小时，训练大模型不够。",
+              "tags": [
+                "A2",
+                "免费算力"
+              ]
+            },
+            {
+              "id": "d2l",
+              "name": "《动手学深度学习》",
+              "url": "https://zh.d2l.ai/",
+              "org": "李沐等",
+              "desc": "中文教材 + 可运行代码 + 配套视频，从零实现到 Transformer，全文免费在线。",
+              "fit": "A3–A4 的主线。想「边跑代码边看解释」用它；只想看视频的去看李沐 B 站。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "第 3 章讲线性模型，第 5–6 章讲多层感知机与卷积，按这个顺序读。",
+              "tags": [
+                "A3",
+                "A4",
+                "教材"
+              ]
+            },
+            {
+              "id": "sklearn",
+              "name": "scikit-learn 官方文档",
+              "url": "https://scikit-learn.org/",
+              "org": "scikit-learn",
+              "desc": "经典机器学习库的官方文档，User Guide 比任何教程都系统。",
+              "fit": "A3 与 B2 都用得上；盯住 metrics 与 model_selection 两节即可。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "英文，但没有中文替代品能到这个质量。",
+              "tags": [
+                "A3",
+                "B2",
+                "工具"
+              ]
+            },
+            {
+              "id": "dive-cv",
+              "name": "动手学 CV-PyTorch",
+              "url": "https://github.com/datawhalechina/dive-into-cv-pytorch",
+              "org": "Datawhale",
+              "desc": "中文原创的计算机视觉教程，按任务组织而非按模型组织。",
+              "fit": "A5 阶段的 CV 主线用它；先做完 A4 再进来，否则会只会抄。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "依赖 PyTorch 与 torchvision，环境要自己配。",
+              "tags": [
+                "A5",
+                "CV"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "learn-path-b",
+          "title": "路径 B · 会 Python 不懂 ML（8–12 周）",
+          "items": [
+            {
+              "id": "hands-on-data",
+              "name": "动手学数据分析",
+              "url": "https://github.com/datawhalechina/hands-on-data-analysis",
+              "org": "Datawhale",
+              "desc": "中文原创的数据分析教程，从读 CSV 到分组聚合与可视化，配真实脏数据。",
+              "fit": "路径 B 的入口。比赛 70% 时间在洗数据，比任何 ML 课都该先做这个。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "第 1–3 章用于 A2，第 4–6 章对应 B2 的 Pipeline 部分。",
+              "tags": [
+                "B2",
+                "数据"
+              ]
+            },
+            {
+              "id": "pumpkin",
+              "name": "南瓜书",
+              "url": "https://github.com/datawhalechina/pumpkin-book",
+              "org": "Datawhale",
+              "desc": "周志华《机器学习》的公式推导补丁，中文原创。",
+              "fit": "读西瓜书卡在公式上时查；它不是替代教材，是推导注释。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "只补推导，不补直觉；看不懂概念还是得回去读原书。",
+              "tags": [
+                "B1",
+                "理论"
+              ]
+            },
+            {
+              "id": "lihang-code",
+              "name": "统计学习方法代码复现",
+              "url": "https://github.com/fengdu78/lihang-code",
+              "org": "fengdu78",
+              "desc": "李航《统计学习方法》每章配可运行代码，中文原创。",
+              "fit": "理论读完立刻想验证的人用；只想要结论别读，这本书的价值在推导。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "代码基于旧版 NumPy，部分示例要改才能跑。",
+              "tags": [
+                "B1",
+                "理论"
+              ]
+            },
+            {
+              "id": "andrew-ng-notes",
+              "name": "吴恩达 ML 课程中文笔记",
+              "url": "https://github.com/fengdu78/Coursera-ML-AndrewNg-Notes",
+              "org": "fengdu78 整理",
+              "desc": "Coursera 机器学习课程的中文笔记，覆盖全部章节。",
+              "fit": "不想看视频、想快速过一遍概念时用；注意是别人整理的笔记，推导有省略。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "aggregator",
+              "note": "二手整理，与官方课程内容可能不同步。",
+              "tags": [
+                "B1",
+                "笔记"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "learn-path-c",
+          "title": "路径 C · 有 ML 基础（12–16 周）",
+          "items": [
+            {
+              "id": "nanogpt",
+              "name": "nanoGPT",
+              "url": "https://github.com/karpathy/nanoGPT",
+              "org": "Andrej Karpathy",
+              "desc": "最小可训练的 GPT 实现，约 300 行核心代码，含训练与采样脚本。",
+              "fit": "C2 从零复现的首选。想搞懂 Transformer 到底怎么训的，读这个比读论文快。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "需要一张能跑的 GPU；CPU 只能训极小模型。",
+              "tags": [
+                "C2",
+                "LLM"
+              ]
+            },
+            {
+              "id": "vllm",
+              "name": "vLLM",
+              "url": "https://github.com/vllm-project/vllm",
+              "org": "vLLM 社区",
+              "desc": "高吞吐 LLM 推理引擎，支持 OpenAI 兼容 API 与 PagedAttention。",
+              "fit": "C3 推理部署用它起服务；只想本地跑着玩用 Ollama 更省事。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "docs.vllm.ai 本次实测连不上，从 GitHub 仓库读文档。",
+              "tags": [
+                "C3",
+                "推理部署"
+              ]
+            },
+            {
+              "id": "ollama",
+              "name": "Ollama",
+              "url": "https://ollama.com/",
+              "org": "Ollama",
+              "desc": "一条命令在本地跑开源模型的工具，模型库覆盖 Llama、Qwen 等。",
+              "fit": "想先在自己电脑上跑通再谈部署的人用；生产环境的吞吐撑不住。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "7B 模型量化后约 4–5GB 显存，纯 CPU 也能跑但很慢。",
+              "tags": [
+                "C3",
+                "本地"
+              ]
+            },
+            {
+              "id": "transformers",
+              "name": "HF Transformers",
+              "url": "https://github.com/huggingface/transformers",
+              "org": "Hugging Face",
+              "desc": "最主流的模型加载与微调库，文档与示例覆盖绝大多数开源模型。",
+              "fit": "C3 与 C4 都用得上；国内下载模型慢，优先走 ModelScope 镜像。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "huggingface.co 主站在国内无法直连，仓库在 GitHub 上可访问。",
+              "tags": [
+                "C3",
+                "C4"
+              ]
+            },
+            {
+              "id": "papers-cool",
+              "name": "Papers.cool",
+              "url": "https://papers.cool/",
+              "org": "Papers.cool",
+              "desc": "arXiv 论文的中文摘要聚合站，按方向分类，每日更新。",
+              "fit": "C1 读论文时配着用，中文摘要能快速判断这篇要不要精读；不能替代原文。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "aggregator",
+              "note": "机器翻译摘要，专业术语可能译错，关键结论要回原文核对。",
+              "tags": [
+                "C1",
+                "论文"
+              ]
+            },
+            {
+              "id": "alphaxiv",
+              "name": "alphaXiv",
+              "url": "https://www.alphaxiv.org/",
+              "org": "alphaXiv",
+              "desc": "在 arXiv 论文页上叠加社区讨论的阅读工具，可直接看别人对某段的质疑。",
+              "fit": "C1 想快速判断一篇论文值不值得读时用；讨论质量参差，别当结论。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "需要 arXiv 链接才能进入对应讨论页。",
+              "tags": [
+                "C1",
+                "论文"
+              ]
+            },
+            {
+              "id": "openreview",
+              "name": "OpenReview",
+              "url": "https://openreview.net/",
+              "org": "OpenReview",
+              "desc": "学术会议的公开评审平台，ICLR、NeurIPS 等会议的审稿意见与作者回复全部公开。",
+              "fit": "C1 想知道「审稿人怎么看这篇论文」时用；这是判断论文分量最硬的一手材料。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "部分会议在评审期关闭公开访问。",
+              "tags": [
+                "C1",
+                "论文"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "learn-cn",
+          "title": "中文速查与基本功",
+          "items": [
+            {
+              "id": "csdiy",
+              "name": "CS 自学指南",
+              "url": "https://csdiy.wiki/",
+              "org": "CSDIY 社区",
+              "desc": "中文原创的计算机课程自学路线，按方向列出该补哪些课。",
+              "fit": "解决「计算机课该按什么顺序补」；不要照着全学，只查你路径上缺的那门。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "推荐的多是国外公开课，部分需要代理。",
+              "tags": [
+                "基本功"
+              ]
+            },
+            {
+              "id": "oi-wiki",
+              "name": "OI Wiki",
+              "url": "https://oi-wiki.org/",
+              "org": "OI Wiki 社区",
+              "desc": "算法竞赛知识库，中文原创，概念讲解配可运行代码。",
+              "fit": "刷题前先查概念能省时间；不做算法岗的可以跳过。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "面向竞赛，工程实践内容少。",
+              "tags": [
+                "算法"
+              ]
+            },
+            {
+              "id": "labuladong",
+              "name": "labuladong 算法笔记",
+              "url": "https://labuladong.online/algo/",
+              "org": "labuladong",
+              "desc": "面试向算法讲解，中文原创，按题型组织。",
+              "fit": "准备笔试面试的人用；只学 AI 不刷题的话投算法岗会挂在笔试。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "official",
+              "note": "部分内容需付费；免费部分已覆盖常见题型。",
+              "tags": [
+                "算法",
+                "面试"
+              ]
+            },
+            {
+              "id": "leetcode-cn",
+              "name": "力扣中文站",
+              "url": "https://leetcode.cn/",
+              "org": "力扣",
+              "desc": "算法题库与笔试模拟，中文界面，国内访问稳定。",
+              "fit": "投任何技术岗都要刷；与 ML 无关，但笔试绕不开。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "会员才有的题目占比不低，免费题库也够入门。",
+              "tags": [
+                "算法",
+                "刷题"
+              ]
+            },
+            {
+              "id": "bilibili-limu",
+              "name": "李沐 B 站空间",
+              "url": "https://space.bilibili.com/1567748478",
+              "org": "李沐",
+              "desc": "《动手学深度学习》作者的 B 站空间，配套论文精读与课程讲解。",
+              "fit": "看书卡住时看对应那一节；他的论文精读系列适合 C1 阶段。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "视频更新不规律，最新内容以 d2l 书为准。",
+              "tags": [
+                "视频",
+                "论文精读"
+              ]
+            },
+            {
+              "id": "datawhale",
+              "name": "Datawhale",
+              "url": "https://github.com/datawhalechina",
+              "org": "Datawhale",
+              "desc": "中文开源学习社区，开源了南瓜书、动手学数据分析、self-llm 等一批教程。",
+              "fit": "想找成套中文教程的人从这里进；仓库质量参差，先看 star 与最近更新。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "仓库很多，注意看最后提交时间，部分已停更。",
+              "tags": [
+                "社区",
+                "教程"
+              ]
+            },
+            {
+              "id": "ml-for-beginners",
+              "name": "ML for Beginners",
+              "url": "https://github.com/microsoft/ML-For-Beginners",
+              "org": "Microsoft",
+              "desc": "微软的 12 周机器学习入门课程，含 Jupyter 笔记本与测验。",
+              "fit": "英文能读、想按周计划走的人用；比中文教程系统，但没有中文版。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "偏传统 ML，深度学习内容少。",
+              "tags": [
+                "入门",
+                "英文"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stack",
+      "title": "工具链与算力",
+      "note": "用什么写、在哪跑。这一组与「学习路径」强耦合但单独成组——学的中途马上要用，混在课程里会让两组都变模糊。",
+      "sections": [
+        {
+          "id": "stack-framework",
+          "title": "框架与训练",
+          "items": [
+            {
+              "id": "pytorch",
+              "name": "PyTorch",
+              "url": "https://pytorch.org/",
+              "org": "PyTorch 基金会",
+              "desc": "学术界与工业界最主流的深度学习框架，教程与文档质量最高。",
+              "fit": "默认选它。课程指定 TensorFlow 才换；tensorflow.org 本次实测无法直连。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "安装时按显卡驱动选 CUDA 版本，装错会静默回落到 CPU。",
+              "tags": [
+                "框架"
+              ]
+            },
+            {
+              "id": "paddle",
+              "name": "飞桨 PaddlePaddle",
+              "url": "https://www.paddlepaddle.org.cn/",
+              "org": "百度",
+              "desc": "国产深度学习框架，中文文档最全，课程与竞赛常指定使用。",
+              "fit": "课程或竞赛要求国产框架时首选；自己练手没必要换。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "生态与 PyTorch 不互通，模型要转换。",
+              "tags": [
+                "框架",
+                "国产"
+              ]
+            },
+            {
+              "id": "paddle-tutorials",
+              "name": "飞桨教程",
+              "url": "https://www.paddlepaddle.org.cn/tutorials",
+              "org": "百度",
+              "desc": "飞桨的官方教程入口，从安装到部署的完整路径。",
+              "fit": "已经决定用飞桨的人直接从这里开始，别看二手博客。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "部分教程依赖 AI Studio 环境。",
+              "tags": [
+                "框架",
+                "国产"
+              ]
+            },
+            {
+              "id": "mindspore",
+              "name": "昇思 MindSpore",
+              "url": "https://www.mindspore.cn/",
+              "org": "华为",
+              "desc": "华为系深度学习框架，中文文档完整，配套昇腾硬件。",
+              "fit": "实验室用昇腾卡、或课程指定时才用；生态比 PyTorch 小很多。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "在非昇腾硬件上跑会明显更慢。",
+              "tags": [
+                "框架",
+                "国产"
+              ]
+            },
+            {
+              "id": "triton",
+              "name": "Triton",
+              "url": "https://triton-lang.org/",
+              "org": "OpenAI",
+              "desc": "用 Python 写 GPU kernel 的语言与编译器，vLLM 等推理框架的底层依赖。",
+              "fit": "做算子优化与推理加速的人必学；只调模型的人用不上。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "文档偏简，多数用法要看 vLLM 等项目的实际代码。",
+              "tags": [
+                "算子",
+                "推理部署"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "stack-model",
+          "title": "模型与推理",
+          "items": [
+            {
+              "id": "modelscope",
+              "name": "ModelScope 魔搭",
+              "url": "https://www.modelscope.cn/",
+              "org": "阿里巴巴",
+              "desc": "国内可直连的模型与数据集社区，模型可直接下载与在线推理，不需要代理。",
+              "fit": "国内下模型最省事的路。HuggingFace 连不上时，先来这里找同名模型。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "模型覆盖面不如 HF，冷门模型可能没有。",
+              "tags": [
+                "模型",
+                "国内"
+              ]
+            },
+            {
+              "id": "modelscope-docs",
+              "name": "ModelScope 文档",
+              "url": "https://www.modelscope.cn/docs",
+              "org": "阿里巴巴",
+              "desc": "魔搭的官方文档，含 SDK 用法、模型上传与在线推理接口。",
+              "fit": "要批量下载模型或用它做推理服务的人看；只用网页界面下载的可以跳过。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "SDK 版本迭代快，注意看文档对应的版本号。",
+              "tags": [
+                "模型",
+                "文档"
+              ]
+            },
+            {
+              "id": "ollama-library",
+              "name": "Ollama 模型库",
+              "url": "https://ollama.com/library",
+              "org": "Ollama",
+              "desc": "可直接 ollama run 的模型清单，标注了参数量与量化后体积。",
+              "fit": "先看显存够不够再决定拉哪个模型；不知道选多大参数就从 7B 开始。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "库里的模型版本可能落后于官方发布。",
+              "tags": [
+                "模型",
+                "本地"
+              ]
+            },
+            {
+              "id": "llama-cpp",
+              "name": "llama.cpp",
+              "url": "https://github.com/ggerganov/llama.cpp",
+              "org": "Georgi Gerganov",
+              "desc": "纯 C/C++ 的 LLM 推理实现，支持量化后在 CPU 与消费级显卡上跑。",
+              "fit": "要在没有 GPU 的机器上跑模型就看它；有 GPU 用 vLLM 更快。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "本次 curl 实测返回 000，属网络抖动；仓库长期活跃。",
+              "tags": [
+                "推理",
+                "量化"
+              ]
+            },
+            {
+              "id": "openrouter",
+              "name": "OpenRouter",
+              "url": "https://openrouter.ai/",
+              "org": "OpenRouter",
+              "desc": "一个 API 调用多家模型的服务，价格与上下文长度在同一页对比。",
+              "fit": "想横向对比多个模型又不想逐个注册的人用；国内访问稳定性一般。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "按 token 计费，免费模型有速率限制。",
+              "tags": [
+                "API",
+                "比价"
+              ]
+            },
+            {
+              "id": "tianchi-models",
+              "name": "阿里云天池数据集",
+              "url": "https://tianchi.aliyun.com/dataset",
+              "org": "阿里巴巴",
+              "desc": "天池的数据集中心，可下载公开数据集，也提供在线 Notebook 环境。",
+              "fit": "找公开数据集与练手赛题用它；模型托管去 ModelScope 更合适。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "在线环境有闲置回收策略，长任务要自己保存。",
+              "tags": [
+                "数据集",
+                "算力"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "stack-app",
+          "title": "应用层与 Agent",
+          "items": [
+            {
+              "id": "langchain",
+              "name": "LangChain",
+              "url": "https://docs.langchain.com/",
+              "org": "LangChain",
+              "desc": "构建 LLM 应用的框架，封装了链式调用、工具与记忆。",
+              "fit": "要做多步骤 Agent 或 RAG 时用；只是调一次 API 的话它是负担。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "版本迭代极快，网上多数教程已过期，只信官方文档。",
+              "tags": [
+                "Agent",
+                "RAG"
+              ]
+            },
+            {
+              "id": "llamaindex",
+              "name": "LlamaIndex",
+              "url": "https://developers.llamaindex.ai/python/framework/",
+              "org": "LlamaIndex",
+              "desc": "面向 RAG 的数据框架，擅长把文档切分、索引与检索串起来。",
+              "fit": "做文档问答、知识库检索的人用；纯 Agent 编排不如 LangChain 全面。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "抽象层次多，出问题要先搞清是哪一层。",
+              "tags": [
+                "RAG"
+              ]
+            },
+            {
+              "id": "mcp",
+              "name": "Model Context Protocol",
+              "url": "https://modelcontextprotocol.io/",
+              "org": "Anthropic",
+              "desc": "让模型访问外部工具与数据的开放协议，各家 IDE 与 Agent 已开始支持。",
+              "fit": "要给 Agent 接本地工具（文件、数据库、API）时看；不做 Agent 的人不需要。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "返回 308 跳转，属正常重定向。",
+              "tags": [
+                "Agent",
+                "协议"
+              ]
+            },
+            {
+              "id": "dify",
+              "name": "Dify",
+              "url": "https://dify.ai/",
+              "org": "Dify",
+              "desc": "开源的 LLM 应用开发平台，可视化编排工作流，可自托管。",
+              "fit": "想快速搭一个能用的 AI 应用、又不想写后端的人用；复杂逻辑还是得写代码。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "云版本免费额度有限，自托管要一台服务器。",
+              "tags": [
+                "应用",
+                "低代码"
+              ]
+            },
+            {
+              "id": "coze",
+              "name": "扣子 Coze",
+              "url": "https://www.coze.cn/",
+              "org": "字节跳动",
+              "desc": "字节的 Bot 搭建平台，中文界面，可发布到飞书、微信等渠道。",
+              "fit": "做中文场景的对话机器人最快；绑定平台生态，迁移成本高。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "调用自家模型有免费额度，超出后按量计费。",
+              "tags": [
+                "应用",
+                "Bot"
+              ]
+            },
+            {
+              "id": "gradio",
+              "name": "Gradio",
+              "url": "https://gradio.app/",
+              "org": "Hugging Face",
+              "desc": "几行 Python 把模型包成网页界面，适合做 demo。",
+              "fit": "课程作业或比赛要交演示界面时用；生产环境别拿它顶。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "默认生成的分享链接有效期 72 小时。",
+              "tags": [
+                "界面",
+                "Demo"
+              ]
+            },
+            {
+              "id": "streamlit",
+              "name": "Streamlit",
+              "url": "https://streamlit.io/",
+              "org": "Streamlit",
+              "desc": "用 Python 写数据应用与对话界面的框架，比 Gradio 更适合多页面应用。",
+              "fit": "要把模型和数据分析拼成一个能用的工具时用；纯 demo 用 Gradio 更省事。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "每次交互都重跑脚本，重计算要加缓存。",
+              "tags": [
+                "界面",
+                "应用"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "free",
+      "title": "免费额度",
+      "note": "学生最硬的约束是钱。这一组只写官方免费额度页与官方学生计划，不写优惠码、不接返佣、不写「薅羊毛」——额度会变，进门后以控制台当期显示为准。",
+      "sections": [
+        {
+          "id": "free-cn",
+          "title": "国内直连",
+          "items": [
+            {
+              "id": "siliconflow",
+              "name": "硅基流动 SiliconFlow",
+              "url": "https://cloud.siliconflow.cn/",
+              "org": "硅基流动",
+              "desc": "国内可直接访问的模型 API 平台，新用户注册送额度，部分小模型长期免费。",
+              "fit": "想调 API 又不想折腾代理的人首选；免费额度用完后按量计费，记得设预算提醒。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "免费模型有并发与速率限制，不适合压测。",
+              "tags": [
+                "API",
+                "额度"
+              ]
+            },
+            {
+              "id": "stepfun",
+              "name": "阶跃星辰 开放平台",
+              "url": "https://platform.stepfun.com/",
+              "org": "阶跃星辰",
+              "desc": "阶跃星辰的模型开放平台，新用户与开发者有免费 token 额度。",
+              "fit": "想试国产多模态模型的人用；文档以中文为主，接入成本低。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "额度有效期与模型范围以控制台为准。",
+              "tags": [
+                "API",
+                "多模态"
+              ]
+            },
+            {
+              "id": "bailian",
+              "name": "阿里云百炼",
+              "url": "https://bailian.console.aliyun.com/",
+              "org": "阿里云",
+              "desc": "通义系列模型的 API 平台，新用户有各模型免费额度，控制台里可查剩余量。",
+              "fit": "要用通义千问做项目的人从这里进；绑阿里云账号，学生认证另有优惠。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "免费额度按模型分别计算，过期不补。",
+              "tags": [
+                "API",
+                "通义"
+              ]
+            },
+            {
+              "id": "qianfan",
+              "name": "百度智能云千帆",
+              "url": "https://console.bce.baidu.com/qianfan/",
+              "org": "百度",
+              "desc": "文心系列模型的 API 平台，新用户有免费额度，支持在线调试。",
+              "fit": "课程或竞赛要求用文心模型时进；单纯练手选择更多。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "需实名认证后才能开通付费。",
+              "tags": [
+                "API",
+                "文心"
+              ]
+            },
+            {
+              "id": "volc-ark",
+              "name": "火山方舟",
+              "url": "https://console.volcengine.com/ark",
+              "org": "字节跳动",
+              "desc": "豆包系列模型的 API 平台，新用户赠送 token，支持批量推理。",
+              "fit": "要做中文对话或长文本处理的人看；接入流程与字节生态绑定较深。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "控制台入口较深，直接走方舟产品页更快。",
+              "tags": [
+                "API",
+                "豆包"
+              ]
+            },
+            {
+              "id": "xfyun-console",
+              "name": "讯飞星火 开放平台",
+              "url": "https://xinghuo.xfyun.cn/",
+              "org": "科大讯飞",
+              "desc": "星火大模型的开放平台，个人开发者有免费额度，语音能力是强项。",
+              "fit": "做语音识别与合成的项目必看；纯文本任务优势不明显。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "不同能力的额度分开计算。",
+              "tags": [
+                "API",
+                "语音"
+              ]
+            },
+            {
+              "id": "bigmodel",
+              "name": "智谱 BigModel",
+              "url": "https://open.bigmodel.cn/",
+              "org": "智谱",
+              "desc": "GLM 系列模型的开放平台，注册即送 token，部分小模型长期免费。",
+              "fit": "想试 GLM 系列的人直接用；价格在国内平台里偏低。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "免费模型有 QPS 限制。",
+              "tags": [
+                "API",
+                "GLM"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "free-student",
+          "title": "学生认证计划",
+          "items": [
+            {
+              "id": "github-pack",
+              "name": "GitHub 学生开发包",
+              "url": "https://education.github.com/pack",
+              "org": "GitHub",
+              "desc": "学生认证后可领取一批开发工具的免费额度，含云算力与 API 服务。",
+              "fit": "有edu 邮箱的学生第一件事就该办；一次认证，后续很多服务都靠它。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "需上传学生证明，审核几天；认证每年要续。",
+              "tags": [
+                "学生认证",
+                "必办"
+              ]
+            },
+            {
+              "id": "aliyun-university",
+              "name": "阿里云高校计划",
+              "url": "https://university.aliyun.com/",
+              "org": "阿里云",
+              "desc": "面向高校学生的算力与课程资源计划，含免费 ECS 与 GPU 试用。",
+              "fit": "要做课程项目、需要一台公网服务器的人看；额度按学期发放。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "需学信网或校园认证，具体权益以当期活动页为准。",
+              "tags": [
+                "学生认证",
+                "算力"
+              ]
+            },
+            {
+              "id": "aistudio",
+              "name": "百度 AI Studio",
+              "url": "https://aistudio.baidu.com/",
+              "org": "百度",
+              "desc": "在线 Notebook 平台，注册即送免费 GPU 算力，按天配额。",
+              "fit": "没有显卡、又要跑训练的人的第一选择；绑定飞桨，用 PyTorch 也能跑但配置麻烦。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "算力按天发放，次日重置；连续挂机会被判定占用。",
+              "tags": [
+                "免费算力",
+                "Notebook"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "free-abroad",
+          "title": "需代理",
+          "items": [
+            {
+              "id": "openrouter-free",
+              "name": "OpenRouter 免费模型",
+              "url": "https://openrouter.ai/models?max_price=0",
+              "org": "OpenRouter",
+              "desc": "按价格筛选出的免费模型列表，直接标出上下文长度与限速档位。",
+              "fit": "有代理、想低成本试多个模型的人用；免费模型限速严格。",
+              "access": "vpn",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "需外币卡验证身份，免费额度按天重置。",
+              "tags": [
+                "API",
+                "需代理"
+              ]
+            },
+            {
+              "id": "cf-workers-ai",
+              "name": "Cloudflare Workers AI",
+              "url": "https://developers.cloudflare.com/workers-ai/",
+              "org": "Cloudflare",
+              "desc": "在边缘节点上跑开源模型的 Serverless 服务，免费额度按 Neuron 计算。",
+              "fit": "要做小工具、又不想自己维护服务器的人看；模型选择有限。",
+              "access": "vpn",
+              "verified": "2026-11-24",
+              "cost": "freemium",
+              "kind": "platform",
+              "note": "国内访问不稳定，需要代理或中转。",
+              "tags": [
+                "API",
+                "需代理"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feed",
+      "title": "信息源",
+      "note": "唯一「给入口不给内容」的一组：本站不转载、不缓存、不镜像任何第三方内容，你看到的每一条都在原站。为什么把它放最后——它不是行动项，是持续动作。",
+      "sections": [
+        {
+          "id": "feed-aihot",
+          "title": "AIHOT 系（第三方聚合）",
+          "disclaimer": "本分区为外部网站入口索引。AIHOT（aihot.news）由数字生命卡兹克独立运营，与本站无隶属或合作关系；其内容、版权与可用性由该站及其来源方负责。点击将离开本站。",
+          "items": [
+            {
+              "id": "aihot-home",
+              "name": "AIHOT 精选",
+              "url": "https://aihot.news/",
+              "org": "数字生命卡兹克",
+              "desc": "每天从 900+ 信源里挑出的 AI 动态，人工编辑过的精选。",
+              "fit": "想知道「今天 AI 圈发生了什么」就从这一页开始；要深度分析它给不了。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "aggregator",
+              "note": "二手聚合，每条都应点回原始信源核对。",
+              "tags": [
+                "每日",
+                "聚合"
+              ]
+            },
+            {
+              "id": "aihot-tokens",
+              "name": "Token 羊毛页",
+              "url": "https://aihot.news/free-tokens",
+              "org": "AIHOT",
+              "desc": "当前还能免费领的大模型额度，按官方价折成人民币，写清门槛与核实日期。",
+              "fit": "找免费额度最省时间的一页；但额度变化快，以官方控制台为准。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "aggregator",
+              "note": "二手整理，领取前先确认官方页面仍有效。",
+              "tags": [
+                "额度"
+              ]
+            },
+            {
+              "id": "aihot-leaderboard",
+              "name": "模型榜与 API 价格",
+              "url": "https://aihot.news/leaderboard",
+              "org": "AIHOT",
+              "desc": "93 个模型、48 项第三方评测折算的综合排名，配每百万 token 价格。",
+              "fit": "选模型、比价时看；排名是折算值，具体任务仍要自己测。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "aggregator",
+              "note": "评测数据来自第三方，折算方法见站内说明。",
+              "tags": [
+                "选型",
+                "比价"
+              ]
+            },
+            {
+              "id": "aihot-hot",
+              "name": "AI 热点榜",
+              "url": "https://aihot.news/hot",
+              "org": "AIHOT",
+              "desc": "过去 48 小时被多个信源共同讨论的事件。",
+              "fit": "当所有人都在聊同一件事而你还不知道时用；它给的是共识，不是真相。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "aggregator",
+              "note": "按信源覆盖数排序，热度不等于重要性。",
+              "tags": [
+                "48h"
+              ]
+            },
+            {
+              "id": "aihot-daily",
+              "name": "AI 日报",
+              "url": "https://aihot.news/daily",
+              "org": "AIHOT",
+              "desc": "每天早 8 点一期，一期看完昨天。",
+              "fit": "不想天天刷信息流、只想每天花 5 分钟跟上节奏的人用。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "aggregator",
+              "note": "日报是编辑筛选后的结果，会漏掉长尾动态。",
+              "tags": [
+                "每日"
+              ]
+            },
+            {
+              "id": "aihot-topics",
+              "name": "主题追踪",
+              "url": "https://aihot.news/topics",
+              "org": "AIHOT",
+              "desc": "38 个主题页，按公司、技术方向追动态。",
+              "fit": "已有明确方向（如 Agent、多模态）的人用；比刷全量流精准得多。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "aggregator",
+              "note": "主题覆盖有限，冷门方向可能没有对应页。",
+              "tags": [
+                "主题"
+              ]
+            },
+            {
+              "id": "aihot-rss",
+              "name": "AIHOT RSS 订阅",
+              "url": "https://aihot.news/feed.xml",
+              "org": "AIHOT",
+              "desc": "把 feed.xml 加进阅读器即可订阅，退出本站也能追。",
+              "fit": "用 RSS 阅读器的人必订；这是唯一不需要站点、不需要 App 的方式。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "aggregator",
+              "note": "全文 feed 在 feed/full.xml，体积较大。",
+              "tags": [
+                "RSS"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "feed-cn",
+          "title": "中文资讯",
+          "items": [
+            {
+              "id": "qbitai",
+              "name": "量子位",
+              "url": "https://www.qbitai.com/",
+              "org": "量子位",
+              "desc": "中文 AI 媒体，偏产业与产品动态，更新频率高。",
+              "fit": "想快速知道国内 AI 圈在发生什么就看；技术细节要回原文或论文。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "部分文章带商业推广，注意区分新闻与软文。",
+              "tags": [
+                "中文",
+                "资讯"
+              ]
+            },
+            {
+              "id": "jiqizhixin",
+              "name": "机器之心",
+              "url": "https://www.jiqizhixin.com/",
+              "org": "机器之心",
+              "desc": "中文 AI 媒体，偏论文解读与技术分析，专业性较强。",
+              "fit": "想看有技术含量的解读就用它；更新速度比量子位慢。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "部分深度内容需注册或付费。",
+              "tags": [
+                "中文",
+                "技术"
+              ]
+            },
+            {
+              "id": "infoq-ai",
+              "name": "InfoQ · AI 专题",
+              "url": "https://www.infoq.cn/topic/AI",
+              "org": "InfoQ 中国",
+              "desc": "面向工程师的 AI 技术专题，偏工程实践与架构。",
+              "fit": "想知道「别人怎么落地」的工程师看；学生可能觉得偏应用。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "文章质量随作者波动，部分为企业投稿。",
+              "tags": [
+                "中文",
+                "工程"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "feed-en",
+          "title": "英文前沿",
+          "items": [
+            {
+              "id": "arxiv-cs-ai",
+              "name": "arXiv cs.AI 最新列表",
+              "url": "https://arxiv.org/list/cs.AI/recent",
+              "org": "arXiv",
+              "desc": "人工智能方向每日新投稿列表，按日期倒序，标题与摘要全部可见。",
+              "fit": "C1 阶段每天扫一眼标题就够；不要试图读完，读不完是常态。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "official",
+              "note": "单篇 abstract 页在国内常超时，列表页可访问。",
+              "tags": [
+                "论文",
+                "每日"
+              ]
+            },
+            {
+              "id": "semanticscholar",
+              "name": "Semantic Scholar",
+              "url": "https://www.semanticscholar.org/",
+              "org": "Allen AI",
+              "desc": "学术搜索引擎，提供引文脉络、被引次数与相关论文推荐。",
+              "fit": "想知道一篇论文被谁引用、后续工作有哪些就用它；比 Google Scholar 的 API 友好。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "部分全文链接需要机构订阅。",
+              "tags": [
+                "论文",
+                "检索"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "feed-community",
+          "title": "社区与趋势",
+          "items": [
+            {
+              "id": "github-trending",
+              "name": "GitHub Trending",
+              "url": "https://github.com/trending",
+              "org": "GitHub",
+              "desc": "按天/周/月看 star 增长最快的仓库，可按语言筛选。",
+              "fit": "找「最近大家在用什么」最快的地方；trending 不等于质量，别盲跟。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "本次 curl 实测偶发 000，属网络抖动，仓库站本身可访问。",
+              "tags": [
+                "趋势",
+                "开源"
+              ]
+            },
+            {
+              "id": "juejin",
+              "name": "掘金",
+              "url": "https://juejin.cn/",
+              "org": "掘金",
+              "desc": "中文开发者社区，AI 实践类文章多。",
+              "fit": "找中文的工程实践与踩坑记录可以看；水文比例不低，先看作者。",
+              "access": "direct",
+              "verified": "2026-11-24",
+              "cost": "free",
+              "kind": "platform",
+              "note": "内容质量参差，不要当权威资料引用。",
+              "tags": [
+                "社区",
+                "中文"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

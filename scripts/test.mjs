@@ -8,6 +8,7 @@ import { daysUntil, keyDates } from "../lib/load.mjs";
 import { validateFile, MANUAL_ONLY_FIELDS } from "../lib/schema.mjs";
 import { extractRows, parseWindow } from "./fetch.mjs";
 import { validateProvinceSignup } from "../lib/province.mjs";
+import { loadAi, validateAi, chars, allItems } from "../lib/ai.mjs";
 
 let pass = 0;
 let fail = 0;
@@ -222,6 +223,65 @@ test("省级数据全部来自 L1 官方且已人工审核", () => {
     assert.equal(ed.trustTier, "L1");
     assert.equal(ed.reviewState, "human_approved");
   }
+});
+
+
+// ---------- AI 板块 ----------
+console.log("\nAI 板块数据");
+
+const aiData = await loadAi();
+const aiRes = validateAi(aiData);
+
+test("data/ai.json 通过校验（0 错误 0 警告）", () => {
+  assert.deepEqual(aiRes.errors, []);
+  assert.deepEqual(aiRes.warnings, []);
+});
+
+test("AI 条目数不少于 100", () => {
+  assert.ok(aiRes.stats.items >= 100, "只有 " + aiRes.stats.items + " 条");
+});
+
+test("六个分组齐全", () => {
+  assert.deepEqual(
+    aiRes.groups.map((g) => g.id),
+    ["contest", "job", "learn", "stack", "free", "feed"]
+  );
+});
+
+test("每个条目都有 fit（谁该用/什么时候别用）", () => {
+  for (const it of allItems(aiData)) {
+    assert.ok(it.fit && it.fit.length >= 12, it.id + " 缺 fit");
+  }
+});
+
+test("每个条目都标了能否直连与验证日期", () => {
+  for (const it of allItems(aiData)) {
+    assert.ok(["direct", "vpn", "login"].includes(it.access), it.id + " access 非法");
+    assert.match(it.verified, /^\d{4}-\d{2}-\d{2}$/, it.id + " verified 非法");
+  }
+});
+
+test("需代理条目占比不超过 25%", () => {
+  assert.ok(aiRes.stats.vpnRatio <= 0.25, "占比 " + (aiRes.stats.vpnRatio * 100).toFixed(1) + "%");
+});
+
+test("适配器：chars 按码点计数", () => {
+  assert.equal(chars("中文abc"), 5);
+  assert.equal(chars("𠮷"), 1);
+});
+
+test("过期的验证日期会被判为 error（>180 天）", () => {
+  const bad = JSON.parse(JSON.stringify(aiData));
+  bad.groups[0].sections[0].items[0].verified = "2020-01-01";
+  const r2 = validateAi(bad);
+  assert.ok(r2.errors.some((e) => e.includes("已过期")), "应报过期错误：" + r2.errors.join("; "));
+});
+
+test("fit 过短会被判为 error（<12 字）", () => {
+  const bad = JSON.parse(JSON.stringify(aiData));
+  bad.groups[0].sections[0].items[0].fit = "能用";
+  const r3 = validateAi(bad);
+  assert.ok(r3.errors.some((e) => e.includes("fit")), "应报 fit 错误：" + r3.errors.join("; "));
 });
 
 console.log("\n\x1b[1m" + pass + " 通过, " + fail + " 失败\x1b[0m\n");
