@@ -180,6 +180,10 @@ a.card:hover { border-color: var(--accent); transform: translateY(-1px); }
 .prov .line { display: block; }
 .prov .line + .line { margin-top: 10px; }
 .prov .line { line-height: 1.8; }
+.prov.stack .line { margin-top: 14px; }
+.prov.stack .line:first-child { margin-top: 0; }
+.prov.stack dt { display: block; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.prov.stack dd { display: block; margin: 0; color: var(--ink-2); }
 .prov a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; word-break: break-word; }
 
 table.timeline { width: 100%; border-collapse: collapse; font-size: 13.5px; }
