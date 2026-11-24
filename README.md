@@ -59,13 +59,30 @@ npm run check                # 一条命令跑完全部（校验 + 测试 + 构�
 
 | 层 | 做了什么 |
 |---|---|
-| 响应式 | 移动优先；390px 下 26 个页面**零横向溢出**（`npm run audit` 用无头 Edge 逐页实测） |
+| 响应式 | 移动优先；390px 下 27 个页面**零横向溢出**（`npm run audit` 用无头 Edge 逐页实测） |
 | 顶栏 | ≤560px 自动换行：品牌名不折行，导航独立成行并做右侧渐隐提示可滑动 |
 | 可安装 | `manifest.webmanifest` + 满版品牌绿图标（192/512，`maskable`）→ 可「添加到主屏幕」，独立窗口打开 |
 | 离线 | `sw.js` stale-while-revalidate：先读缓存再后台更新；断网时首页/日历/省级窗口仍可打开 |
 | 日期订阅 | 每个条目/频道/全省份都有 `.ics`，iOS 日历、Android、Outlook 均可直接订阅 |
 
 > 为什么不做 App：一个一年只需要打开 ≤40 天的工具，装 App 是纯负担。PWA 让"加到桌面"的成本降到一次点击，也不占用户存储。
+
+### 关于桌面端
+
+**不做 Electron/Tauri 封装**，但产物本身可以直接双击打开——`dist/` 是全相对路径的纯静态文件，不依赖服务器。
+
+想把它固定到桌面：
+
+```powershell
+# Windows：在桌面建一个快捷方式，指向 dist/index.html
+$s = (New-Object -ComObject WScript.Shell).CreateShortcut("$env:USERPROFILE\Desktop\College-AM.lnk")
+$s.TargetPath = "$PWD\dist\index.html"
+$s.Save()
+```
+
+用浏览器的「创建应用快捷方式」（Chrome/Edge 均支持），得到的是一个无地址栏的独立窗口，效果与装一个桌面应用接近，但**包体是你已经下载的这几个 KB 的 HTML**，不是 150MB 的 Chromium。
+
+> 为什么不打包：Tauri/Electron 的成本是现在的 2 倍以上，包体 5–150MB，Windows/macOS 还要签名，而这个产品的使用场景是"手机上查截止日"——桌面端连第二入口都算不上。PWA + 快捷方式已经覆盖"想在电脑上常驻"的那一小部分需求。
 
 ---
 
