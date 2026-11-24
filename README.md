@@ -19,6 +19,20 @@
 | 官方原文一键跳转 | ❌ 不做站内投递、不接收简历 |
 | 过期条目降级为"已结束"，保留 URL | ❌ 不做 AI 生成正文、不做个性化推荐 |
 
+### 页面清单（27 页）
+
+```
+index.html        首页            calendar.html    日历
+certs.html        考证            contests.html    竞赛
+ai.html           AI 板块         majors.html      专业频道
+zhaopin.html      招聘跳转        provinces.html   省级窗口
+sources.html      数据来源        about.html       关于
+p/*.html          10 个条目详情页
+m/*.html          7 个职业出口频道
+```
+
+每个条目、每个频道、以及全部/报名截止两个维度都有 `.ics` 订阅文件。
+
 ---
 
 ## 为什么做这个
@@ -205,7 +219,7 @@ signupStart, signupEnd, eventStart, eventEnd, feeCny, feeNote
 
 ## 路线图
 
-- **M0（当前）**：10 个条目、8 个已核实届次、静态站 + .ics 订阅
+- **M0（当前，已完成）**：10 个条目 / 8 个已核实届次 / 7 个职业出口频道 / 27 个页面 / 12 个 .ics / PWA 可安装 / 390px 零溢出 / 26 个测试
 - **M1**：30 个条目、5 个频道满负荷、自动抓取 1 个源（bm.ruankao.org.cn 省级表格）、订阅邮件
 - **M2**：开放投稿、共建人制度、schema v1.0 冻结
 
