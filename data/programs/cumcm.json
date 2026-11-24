@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "0.1.0",
+  "programs": [
+    {
+      "id": "cumcm",
+      "kind": "contest",
+      "name": "全国大学生数学建模竞赛",
+      "shortName": "国赛 / 数模",
+      "aliases": [
+        "数模",
+        "数学建模",
+        "国赛",
+        "CUMCM",
+        "全国大学生数学建模竞赛",
+        "高教社杯"
+      ],
+      "organizer": "中国工业与应用数学学会",
+      "organizerType": "academic",
+      "level": "national",
+      "tags": [
+        "数学建模",
+        "团队赛",
+        "保研加分",
+        "含金量高"
+      ],
+      "majors": [
+        {
+          "id": "data",
+          "weight": "core"
+        },
+        {
+          "id": "backend",
+          "weight": "core"
+        },
+        {
+          "id": "embedded",
+          "weight": "core"
+        },
+        {
+          "id": "network",
+          "weight": "recommended"
+        },
+        {
+          "id": "finance",
+          "weight": "recommended"
+        },
+        {
+          "id": "all",
+          "weight": "recommended"
+        }
+      ],
+      "officialUrl": "https://www.mcm.edu.cn/",
+      "summary": "中国工业与应用数学学会主办，每年 9 月举行，3 人一队。2026 年有 1963 所院校、89543 队、26 万余人报名，是世界上规模最大的数学建模竞赛。",
+      "editions": [
+        {
+          "id": "cumcm-2026-annual",
+          "year": 2026,
+          "round": "annual",
+          "signupStart": null,
+          "signupEnd": null,
+          "eventStart": null,
+          "eventEnd": null,
+          "feeCny": null,
+          "feeNote": "以中国知网报名系统为准",
+          "milestones": [
+            {
+              "label": "赛题发布 / 开赛",
+              "date": "2026-09-10",
+              "kind": "event"
+            }
+          ],
+          "noticeUrl": "https://www.mcm.edu.cn/",
+          "sourceUrl": "https://www.mcm.edu.cn/",
+          "fetchedAt": "2026-11-24T21:30:00+08:00",
+          "verifiedAt": "2026-11-24T21:30:00+08:00",
+          "trustTier": "L1",
+          "confidence": 88,
+          "reviewState": "human_approved",
+          "summary": "2026 年赛题于 9 月 10 日 18:00 发布；2026 年共 1963 所院校、89543 队报名。",
+          "notes": [
+            "官网原文：2026年赛题将于竞赛开始时（2026年9月10日晚上6:00）发布。",
+            "报名与论文提交通过中国知网（cumcm.cnki.net）进行，官网不直接受理。",
+            "官网只公布开赛时间，未公布结束时间；结束时间以赛题说明为准，本站不推算。"
+          ]
+        }
+      ]
+    }
+  ]
+}

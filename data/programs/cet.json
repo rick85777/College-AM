@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "0.1.0",
+  "programs": [
+    {
+      "id": "cet",
+      "kind": "cert",
+      "name": "全国大学英语四、六级考试",
+      "shortName": "四六级 / CET",
+      "aliases": [
+        "四六级",
+        "CET",
+        "CET4",
+        "CET6",
+        "大学英语四级",
+        "大学英语六级",
+        "四级",
+        "六级"
+      ],
+      "organizer": "教育部教育考试院",
+      "organizerType": "official",
+      "level": "national",
+      "tags": [
+        "英语",
+        "学位相关",
+        "通用门槛"
+      ],
+      "majors": [
+        {
+          "id": "all",
+          "weight": "core"
+        },
+        {
+          "id": "backend",
+          "weight": "core"
+        },
+        {
+          "id": "network",
+          "weight": "core"
+        },
+        {
+          "id": "embedded",
+          "weight": "core"
+        },
+        {
+          "id": "data",
+          "weight": "core"
+        },
+        {
+          "id": "finance",
+          "weight": "core"
+        },
+        {
+          "id": "teaching",
+          "weight": "core"
+        }
+      ],
+      "officialUrl": "https://cet.neea.edu.cn/",
+      "summary": "教育部教育考试院主办的全国性英语水平考试，每年 6 月、12 月各一次笔试，5 月、11 月各一次口试。多数高校将其与学位授予挂钩，是企业校招的通用筛选门槛。",
+      "editions": [
+        {
+          "id": "cet-2026-h1",
+          "year": 2026,
+          "round": "h1",
+          "signupStart": null,
+          "signupEnd": null,
+          "eventStart": null,
+          "eventEnd": null,
+          "feeCny": null,
+          "feeNote": "各考点自定，以本校通知为准",
+          "milestones": [
+            {
+              "label": "口试 CET-SET",
+              "date": "2026-05-23",
+              "end": "2026-05-24",
+              "kind": "event"
+            },
+            {
+              "label": "口试准考证打印",
+              "date": "2026-05-19",
+              "kind": "other"
+            },
+            {
+              "label": "笔试 CET",
+              "date": "2026-06-13",
+              "kind": "event"
+            },
+            {
+              "label": "笔试准考证打印",
+              "date": "2026-06-05",
+              "kind": "other"
+            }
+          ],
+          "noticeUrl": "https://cet.neea.edu.cn/html1/report/2603/2-1.htm",
+          "sourceUrl": "https://cet.neea.edu.cn/html1/report/2603/2-1.htm",
+          "fetchedAt": "2026-11-24T21:30:00+08:00",
+          "verifiedAt": "2026-11-24T21:30:00+08:00",
+          "trustTier": "L1",
+          "confidence": 95,
+          "reviewState": "human_approved",
+          "summary": "2026 年上半年：口试 5 月 23-24 日，笔试 6 月 13 日（四级 9:00-11:20，六级 15:00-17:25）。",
+          "notes": [
+            "公告原文明确：各考点报名时间不同，须按所在学校规定时间登录 cet-bm.neea.edu.cn 报名，本站不给出全国统一的报名起止日期。",
+            "自本次考试起不再提供纸质成绩单，改为电子成绩报告单。"
+          ]
+        },
+        {
+          "id": "cet-2026-h2",
+          "year": 2026,
+          "round": "h2",
+          "signupStart": null,
+          "signupEnd": null,
+          "eventStart": null,
+          "eventEnd": null,
+          "feeCny": null,
+          "feeNote": "各考点自定，以本校通知为准",
+          "milestones": [
+            {
+              "label": "口试准考证打印",
+              "date": "2026-11-17",
+              "kind": "other"
+            },
+            {
+              "label": "口试 CET-SET",
+              "date": "2026-11-21",
+              "end": "2026-11-22",
+              "kind": "event"
+            },
+            {
+              "label": "笔试准考证打印",
+              "date": "2026-12-01",
+              "kind": "other"
+            },
+            {
+              "label": "笔试 CET",
+              "date": "2026-12-12",
+              "kind": "event"
+            }
+          ],
+          "noticeUrl": "https://cet.neea.edu.cn/html1/report/2609/1-1.htm",
+          "sourceUrl": "https://cet.neea.edu.cn/html1/report/2609/1-1.htm",
+          "fetchedAt": "2026-11-24T21:30:00+08:00",
+          "verifiedAt": "2026-11-24T21:30:00+08:00",
+          "trustTier": "L1",
+          "confidence": 95,
+          "reviewState": "human_approved",
+          "summary": "2026 年下半年：口试 11 月 21-22 日，笔试 12 月 12 日（四级 9:00-11:20，六级 15:00-17:25）。",
+          "notes": [
+            "公告原文明确：各考点报名时间不同，须按所在学校规定时间登录 cet-bm.neea.edu.cn 报名。",
+            "口试准考证 11 月 17 日 9 时起打印；笔试准考证 12 月 1 日 9 时起打印。"
+          ]
+        }
+      ]
+    }
+  ]
+}

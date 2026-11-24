@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "0.1.0",
+  "programs": [
+    {
+      "id": "ncre",
+      "kind": "cert",
+      "name": "全国计算机等级考试",
+      "shortName": "计算机等级 / NCRE",
+      "aliases": [
+        "计算机二级",
+        "计算机三级",
+        "NCRE",
+        "全国计算机等级考试",
+        "计算机等级证书",
+        "计算机一级"
+      ],
+      "organizer": "教育部教育考试院",
+      "organizerType": "official",
+      "level": "national",
+      "tags": [
+        "计算机",
+        "通用门槛",
+        "非计算机专业友好"
+      ],
+      "majors": [
+        {
+          "id": "all",
+          "weight": "recommended"
+        },
+        {
+          "id": "backend",
+          "weight": "recommended"
+        },
+        {
+          "id": "network",
+          "weight": "core"
+        },
+        {
+          "id": "embedded",
+          "weight": "core"
+        },
+        {
+          "id": "data",
+          "weight": "recommended"
+        },
+        {
+          "id": "finance",
+          "weight": "recommended"
+        },
+        {
+          "id": "teaching",
+          "weight": "recommended"
+        }
+      ],
+      "officialUrl": "https://ncre.neea.edu.cn/",
+      "summary": "教育部教育考试院主办，分四个级别 26 个科目，每年 3 月、9 月两次。二级 Office / Python 常被非计算机专业作为毕业或求职的加分项。",
+      "editions": [
+        {
+          "id": "ncre-2026-h1",
+          "year": 2026,
+          "round": "h1",
+          "signupStart": null,
+          "signupEnd": null,
+          "eventStart": "2026-03-28",
+          "eventEnd": "2026-03-30",
+          "feeCny": null,
+          "feeNote": "各省自定，以省级承办机构公告为准",
+          "milestones": [
+            {
+              "label": "考试",
+              "date": "2026-03-28",
+              "end": "2026-03-30",
+              "kind": "event"
+            }
+          ],
+          "noticeUrl": "https://ncre.neea.edu.cn/html1/report/2512/40-1.htm",
+          "sourceUrl": "https://ncre.neea.edu.cn/html1/report/2512/40-1.htm",
+          "fetchedAt": "2026-11-24T21:30:00+08:00",
+          "verifiedAt": "2026-11-24T21:30:00+08:00",
+          "trustTier": "L1",
+          "confidence": 95,
+          "reviewState": "human_approved",
+          "summary": "2026 年 3 月考试：3 月 28-30 日举行，开考全部 4 个级别 26 个科目。",
+          "notes": [
+            "报名时间由各省级承办机构分别规定，公告内含 31 省报名起止时间表。",
+            "报名入口：ncre-bm.neea.edu.cn"
+          ]
+        },
+        {
+          "id": "ncre-2026-h2",
+          "year": 2026,
+          "round": "h2",
+          "signupStart": null,
+          "signupEnd": null,
+          "eventStart": "2026-09-19",
+          "eventEnd": "2026-09-21",
+          "feeCny": null,
+          "feeNote": "各省自定，以省级承办机构公告为准",
+          "milestones": [
+            {
+              "label": "考试",
+              "date": "2026-09-19",
+              "end": "2026-09-21",
+              "kind": "event"
+            }
+          ],
+          "noticeUrl": "https://ncre.neea.edu.cn/html1/report/2606/16-1.htm",
+          "sourceUrl": "https://ncre.neea.edu.cn/html1/report/2606/16-1.htm",
+          "fetchedAt": "2026-11-24T21:30:00+08:00",
+          "verifiedAt": "2026-11-24T21:30:00+08:00",
+          "trustTier": "L1",
+          "confidence": 95,
+          "reviewState": "human_approved",
+          "summary": "2026 年 9 月考试：9 月 19-21 日举行，开考全部 4 个级别 26 个科目。",
+          "notes": [
+            "报名时间由各省级承办机构分别规定（北京 7 月 2 日 9:00 至 7 月 6 日 17:00；黑龙江 8 月 27 日 9:00 至 9 月 4 日 24:00——各省差异极大）。",
+            "2026 年 11 月 10 日起可查询成绩与证书。"
+          ]
+        }
+      ]
+    }
+  ]
+}

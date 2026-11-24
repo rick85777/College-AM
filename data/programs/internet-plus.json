@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "0.1.0",
+  "programs": [
+    {
+      "id": "internet-plus",
+      "kind": "contest",
+      "name": "中国国际大学生创新大赛",
+      "shortName": "国创赛 / 互联网+",
+      "aliases": [
+        "互联网+",
+        "互联网加",
+        "国创赛",
+        "中国国际大学生创新大赛",
+        "创新创业大赛"
+      ],
+      "organizer": "教育部",
+      "organizerType": "official",
+      "level": "national",
+      "tags": [
+        "创新创业",
+        "团队赛",
+        "保研加分",
+        "含金量高",
+        "A类竞赛"
+      ],
+      "majors": [
+        {
+          "id": "all",
+          "weight": "core"
+        },
+        {
+          "id": "backend",
+          "weight": "core"
+        },
+        {
+          "id": "network",
+          "weight": "recommended"
+        },
+        {
+          "id": "embedded",
+          "weight": "core"
+        },
+        {
+          "id": "data",
+          "weight": "core"
+        },
+        {
+          "id": "finance",
+          "weight": "recommended"
+        },
+        {
+          "id": "teaching",
+          "weight": "adjacent"
+        }
+      ],
+      "officialUrl": "https://cy.ncss.cn/",
+      "summary": "教育部主办的创新创业类国家级赛事（原互联网+大赛），设高教主赛道、青年红色筑梦之旅、产业赛道等。校级选拔通常在春季，全国总决赛在下半年。",
+      "editions": [
+        {
+          "id": "internet-plus-2026-annual",
+          "year": 2026,
+          "round": "annual",
+          "signupStart": null,
+          "signupEnd": null,
+          "eventStart": null,
+          "eventEnd": null,
+          "feeCny": null,
+          "feeNote": "不收取报名费",
+          "noticeUrl": "https://cy.ncss.cn/",
+          "sourceUrl": "https://cy.ncss.cn/",
+          "fetchedAt": "2026-11-24T21:30:00+08:00",
+          "verifiedAt": null,
+          "trustTier": "L1",
+          "confidence": 45,
+          "reviewState": "pending",
+          "summary": "2026 年度赛事。官网为 JS 渲染的报名系统，本年度的报名与决赛日期未能从公开页面机读确认，待人工补齐。",
+          "notes": [
+            "报名入口：cy.ncss.cn（全国大学生创业服务网）。",
+            "此条为 pending：不展示具体日期，只展示官网入口——宁可显示未公布，也不猜日期。"
+          ]
+        }
+      ]
+    }
+  ]
+}

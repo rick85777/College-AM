@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "0.1.0",
+  "programs": [
+    {
+      "id": "kjz",
+      "kind": "cert",
+      "name": "会计专业技术资格考试（初级）",
+      "shortName": "初级会计",
+      "aliases": [
+        "初级会计",
+        "会计初级",
+        "助理会计师",
+        "初级会计职称"
+      ],
+      "organizer": "财政部会计财务评价中心",
+      "organizerType": "official",
+      "level": "national",
+      "tags": [
+        "财会",
+        "入门门槛",
+        "职称"
+      ],
+      "majors": [
+        {
+          "id": "finance",
+          "weight": "core"
+        },
+        {
+          "id": "all",
+          "weight": "recommended"
+        }
+      ],
+      "officialUrl": "https://kzp.mof.gov.cn/",
+      "summary": "财政部主办的会计专业技术资格初级考试，考《初级会计实务》与《经济法基础》两科，同一年度内两科全部合格方可领证。财会岗位的入门门槛。",
+      "editions": [
+        {
+          "id": "kjz-2026-annual",
+          "year": 2026,
+          "round": "annual",
+          "signupStart": null,
+          "signupEnd": null,
+          "eventStart": null,
+          "eventEnd": null,
+          "feeCny": null,
+          "feeNote": "各省自定",
+          "noticeUrl": "https://kzp.mof.gov.cn/",
+          "sourceUrl": "https://kzp.mof.gov.cn/",
+          "fetchedAt": "2026-11-24T21:30:00+08:00",
+          "verifiedAt": null,
+          "trustTier": "L1",
+          "confidence": 40,
+          "reviewState": "pending",
+          "summary": "2026 年度初级会计考试。具体报名与考试日期需以财政部会计财务评价中心当年公告为准，当前条目待人工补齐。",
+          "notes": [
+            "初级会计实行全国统一组织、一年一次，通常在 1 月报名、5 月考试，但每年公告会微调。未经官方原文确认前不写入具体日期。",
+            "报名入口：kzp.mof.gov.cn（财政部会计财务评价中心）。"
+          ]
+        }
+      ]
+    }
+  ]
+}

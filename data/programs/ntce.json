@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "0.1.0",
+  "programs": [
+    {
+      "id": "ntce",
+      "kind": "cert",
+      "name": "中小学教师资格考试",
+      "shortName": "教资 / NTCE",
+      "aliases": [
+        "教师资格证",
+        "教资",
+        "NTCE",
+        "教资笔试",
+        "教资面试",
+        "中小学教师资格"
+      ],
+      "organizer": "教育部教育考试院",
+      "organizerType": "official",
+      "level": "national",
+      "tags": [
+        "教师资格",
+        "师范必备",
+        "转行教师"
+      ],
+      "majors": [
+        {
+          "id": "teaching",
+          "weight": "core"
+        },
+        {
+          "id": "all",
+          "weight": "recommended"
+        },
+        {
+          "id": "backend",
+          "weight": "adjacent"
+        },
+        {
+          "id": "network",
+          "weight": "adjacent"
+        },
+        {
+          "id": "embedded",
+          "weight": "adjacent"
+        },
+        {
+          "id": "data",
+          "weight": "adjacent"
+        },
+        {
+          "id": "finance",
+          "weight": "adjacent"
+        }
+      ],
+      "officialUrl": "https://ntce.neea.edu.cn/",
+      "summary": "教育部教育考试院主办，分幼儿园/小学/初中/高中等类别。笔试与面试均在上、下半年各一次，是教师岗位的硬性准入条件。",
+      "editions": [
+        {
+          "id": "ntce-2026-h1",
+          "year": 2026,
+          "round": "h1",
+          "signupStart": null,
+          "signupEnd": null,
+          "eventStart": null,
+          "eventEnd": null,
+          "feeCny": null,
+          "feeNote": "各省自定，以省级报名公告为准",
+          "milestones": [
+            {
+              "label": "笔试",
+              "date": "2026-03-07",
+              "kind": "event"
+            },
+            {
+              "label": "面试",
+              "date": "2026-05-16",
+              "end": "2026-05-17",
+              "kind": "event"
+            }
+          ],
+          "noticeUrl": "https://ntce.neea.edu.cn/html1/folder/1507/1260-1.htm",
+          "sourceUrl": "https://ntce.neea.edu.cn/html1/folder/1507/1260-1.htm",
+          "fetchedAt": "2026-11-24T21:30:00+08:00",
+          "verifiedAt": "2026-11-24T21:30:00+08:00",
+          "trustTier": "L1",
+          "confidence": 92,
+          "reviewState": "human_approved",
+          "summary": "2026 年上半年：笔试 3 月 7 日，面试 5 月 16-17 日。",
+          "notes": [
+            "笔试分上午 9:00-11:00、下午 13:00-15:00、下午 16:00-18:00 三个时段。"
+          ]
+        },
+        {
+          "id": "ntce-2026-h2",
+          "year": 2026,
+          "round": "h2",
+          "signupStart": null,
+          "signupEnd": null,
+          "eventStart": null,
+          "eventEnd": null,
+          "feeCny": null,
+          "feeNote": "各省自定，以省级报名公告为准",
+          "milestones": [
+            {
+              "label": "笔试报名开始",
+              "date": "2026-07-03",
+              "kind": "signup"
+            },
+            {
+              "label": "笔试",
+              "date": "2026-09-12",
+              "kind": "event"
+            },
+            {
+              "label": "面试报名开始",
+              "date": "2026-11-06",
+              "kind": "signup"
+            },
+            {
+              "label": "面试",
+              "date": "2026-12-05",
+              "end": "2026-12-06",
+              "kind": "event"
+            }
+          ],
+          "noticeUrl": "https://ntce.neea.edu.cn/html1/report/2606/25-1.htm",
+          "sourceUrl": "https://ntce.neea.edu.cn/html1/folder/1507/1260-1.htm",
+          "fetchedAt": "2026-11-24T21:30:00+08:00",
+          "verifiedAt": "2026-11-24T21:30:00+08:00",
+          "trustTier": "L1",
+          "confidence": 92,
+          "reviewState": "human_approved",
+          "summary": "2026 年下半年：笔试 9 月 12 日，面试 12 月 5-6 日；笔试报名 7 月 3 日开始，面试报名 11 月 6 日开始。",
+          "notes": [
+            "笔试报名公告（2026-06-29）：报名工作将于 7 月 3 日开始，31 省分别发布本省公告。",
+            "面试报名公告（2026-10-30）：报名工作将于 11 月 6 日开始。"
+          ]
+        }
+      ]
+    }
+  ]
+}

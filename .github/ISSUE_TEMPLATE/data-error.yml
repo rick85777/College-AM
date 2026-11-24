@@ -1,0 +1,44 @@
+name: 数据纠错
+description: 报告一条错误的日期、费用或主办方信息
+title: "[纠错] "
+labels: ["data-error"]
+body:
+  - type: input
+    id: program
+    attributes:
+      label: 哪个条目
+      placeholder: 例如：全国大学英语四、六级考试
+    validations:
+      required: true
+  - type: input
+    id: field
+    attributes:
+      label: 哪个字段
+      placeholder: 例如：2026 下半年笔试日期
+    validations:
+      required: true
+  - type: input
+    id: current
+    attributes:
+      label: 现在显示的是什么
+    validations:
+      required: true
+  - type: input
+    id: correct
+    attributes:
+      label: 正确的应该是什么
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: 官方原文链接（必填）
+      description: 没有官方链接的纠错不会被采纳
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: 补充说明
+    validations:
+      required: false

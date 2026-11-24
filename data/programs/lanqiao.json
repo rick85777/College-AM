@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "0.1.0",
+  "programs": [
+    {
+      "id": "lanqiao",
+      "kind": "contest",
+      "name": "蓝桥杯全国软件和信息技术专业人才大赛",
+      "shortName": "蓝桥杯",
+      "aliases": [
+        "蓝桥杯",
+        "蓝桥",
+        "Lanqiao",
+        "蓝桥杯大赛"
+      ],
+      "organizer": "工业和信息化部人才交流中心",
+      "organizerType": "official",
+      "level": "national",
+      "tags": [
+        "程序设计",
+        "算法",
+        "团队赛",
+        "保研加分"
+      ],
+      "majors": [
+        {
+          "id": "backend",
+          "weight": "core"
+        },
+        {
+          "id": "data",
+          "weight": "core"
+        },
+        {
+          "id": "embedded",
+          "weight": "recommended"
+        },
+        {
+          "id": "network",
+          "weight": "recommended"
+        },
+        {
+          "id": "all",
+          "weight": "recommended"
+        }
+      ],
+      "officialUrl": "https://dasai.lanqiao.cn/",
+      "summary": "工业和信息化部人才交流中心主办的全国性 IT 学科赛事，设软件类、电子类等赛道，分省赛与国赛。官网为单页应用，通知需在站内 JS 渲染后查看。",
+      "editions": [
+        {
+          "id": "lanqiao-2027-annual",
+          "year": 2027,
+          "round": "annual",
+          "signupStart": null,
+          "signupEnd": null,
+          "eventStart": null,
+          "eventEnd": null,
+          "feeCny": null,
+          "feeNote": "以官网通知为准",
+          "noticeUrl": "https://dasai.lanqiao.cn/",
+          "sourceUrl": "https://dasai.lanqiao.cn/",
+          "fetchedAt": "2026-11-24T21:30:00+08:00",
+          "verifiedAt": null,
+          "trustTier": "L1",
+          "confidence": 40,
+          "reviewState": "pending",
+          "summary": "2027 赛季（通常在上一年秋季启动报名）。官网为纯 SPA 壳页，正文需 JS 渲染，当前未能机读取到日期。",
+          "notes": [
+            "dasai.lanqiao.cn 首页仅 1,437 字节，只有一个 div#root——这是典型的 SPA 壳页，直接抓 HTML 拿不到任何信息。",
+            "该条为 pending，不展示任何日期。补齐方式：人工打开官网抄录，或逆向其 XHR 接口后再评估合规性。"
+          ]
+        }
+      ]
+    }
+  ]
+}

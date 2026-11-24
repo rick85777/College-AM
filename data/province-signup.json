@@ -1,0 +1,607 @@
+{
+  "schemaVersion": "0.1.0",
+  "$comment": "省级报名时间窗口。同一场考试，各省窗口差异极大 —— 这正是本项目的核心价值。数据全部来自 L1 官方原文的表格，未做任何推算。",
+  "editions": [
+    {
+      "editionId": "ncre-2026-h2",
+      "programId": "ncre",
+      "sourceUrl": "https://ncre.neea.edu.cn/html1/report/2606/16-1.htm",
+      "fetchedAt": "2026-11-24T21:30:00+08:00",
+      "trustTier": "L1",
+      "reviewState": "human_approved",
+      "note": "NCRE 公告原文附「2026 年 9 月 NCRE 省级承办机构报名时间」表。部分省份（辽宁、重庆）有第二段补报名窗口。",
+      "windows": [
+        {
+          "code": "11",
+          "province": "北京",
+          "org": "北京教育考试院",
+          "start": "2026-07-02",
+          "startTime": "09:00",
+          "end": "2026-07-06",
+          "endTime": "17:00"
+        },
+        {
+          "code": "12",
+          "province": "天津",
+          "org": "天津市教育招生考试院",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-03",
+          "endTime": "17:00"
+        },
+        {
+          "code": "13",
+          "province": "河北",
+          "org": "河北省教育考试院",
+          "start": "2026-07-06",
+          "startTime": "09:00",
+          "end": "2026-07-14",
+          "endTime": "17:00"
+        },
+        {
+          "code": "14",
+          "province": "山西",
+          "org": "山西省招生考试管理中心",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-05",
+          "endTime": "24:00"
+        },
+        {
+          "code": "15",
+          "province": "内蒙古",
+          "org": "内蒙古自治区教育考试院",
+          "start": "2026-06-26",
+          "startTime": "09:00",
+          "end": "2026-07-05",
+          "endTime": "17:00"
+        },
+        {
+          "code": "21",
+          "province": "辽宁",
+          "org": "辽宁省高中等教育招生考试委员会办公室",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-15",
+          "endTime": "16:00",
+          "extra": "补报名：8 月 27 日 9:00 至 9 月 4 日 16:00"
+        },
+        {
+          "code": "22",
+          "province": "吉林",
+          "org": "吉林省教育考试院",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-15",
+          "endTime": "16:00"
+        },
+        {
+          "code": "23",
+          "province": "黑龙江",
+          "org": "黑龙江省招生考试院",
+          "start": "2026-08-27",
+          "startTime": "09:00",
+          "end": "2026-09-04",
+          "endTime": "24:00"
+        },
+        {
+          "code": "31",
+          "province": "上海",
+          "org": "上海市教育考试院",
+          "start": "2026-08-31",
+          "startTime": "10:00",
+          "end": "2026-09-03",
+          "endTime": "16:00"
+        },
+        {
+          "code": "32",
+          "province": "江苏",
+          "org": "江苏省教育考试院",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-15",
+          "endTime": "24:00"
+        },
+        {
+          "code": "33",
+          "province": "浙江",
+          "org": "浙江省教育考试院",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-15",
+          "endTime": "17:00"
+        },
+        {
+          "code": "34",
+          "province": "安徽",
+          "org": "安徽省教育招生考试院",
+          "start": "2026-06-26",
+          "startTime": "09:00",
+          "end": "2026-07-09",
+          "endTime": "17:00"
+        },
+        {
+          "code": "35",
+          "province": "福建",
+          "org": "福建省教育考试院",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-15",
+          "endTime": "24:00"
+        },
+        {
+          "code": "36",
+          "province": "江西",
+          "org": "江西省教育考试院",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-02",
+          "endTime": "17:00"
+        },
+        {
+          "code": "37",
+          "province": "山东",
+          "org": "山东省教育招生考试院",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-01",
+          "endTime": "17:00"
+        },
+        {
+          "code": "41",
+          "province": "河南",
+          "org": "河南省教育考试院",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-10",
+          "endTime": "17:00"
+        },
+        {
+          "code": "42",
+          "province": "湖北",
+          "org": "湖北省教育考试院",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-06",
+          "endTime": "17:00"
+        },
+        {
+          "code": "43",
+          "province": "湖南",
+          "org": "湖南省教育考试院",
+          "start": "2026-06-27",
+          "startTime": "09:00",
+          "end": "2026-07-06",
+          "endTime": "16:00"
+        },
+        {
+          "code": "44",
+          "province": "广东",
+          "org": "广东省教育考试院",
+          "start": "2026-06-25",
+          "startTime": "10:00",
+          "end": "2026-07-03",
+          "endTime": "16:00"
+        },
+        {
+          "code": "45",
+          "province": "广西",
+          "org": "广西招生考试院",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-08",
+          "endTime": "23:55"
+        },
+        {
+          "code": "46",
+          "province": "海南",
+          "org": "海南省考试局",
+          "start": "2026-06-25",
+          "startTime": "11:00",
+          "end": "2026-07-14",
+          "endTime": "24:00"
+        },
+        {
+          "code": "50",
+          "province": "重庆",
+          "org": "重庆市教育考试院",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-15",
+          "endTime": "24:00",
+          "extra": "补报名：8 月 27 日 9:00 至 9 月 4 日 24:00"
+        },
+        {
+          "code": "51",
+          "province": "四川",
+          "org": "四川省教育考试院",
+          "start": "2026-06-29",
+          "startTime": "09:00",
+          "end": "2026-07-08",
+          "endTime": "24:00"
+        },
+        {
+          "code": "52",
+          "province": "贵州",
+          "org": "贵州省招生考试院",
+          "start": "2026-06-30",
+          "startTime": "10:00",
+          "end": "2026-07-10",
+          "endTime": "17:00"
+        },
+        {
+          "code": "53",
+          "province": "云南",
+          "org": "云南省招生考试院",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-05",
+          "endTime": "24:00"
+        },
+        {
+          "code": "54",
+          "province": "西藏",
+          "org": "西藏自治区教育考试院",
+          "start": "2026-08-27",
+          "startTime": "09:00",
+          "end": "2026-09-04",
+          "endTime": "24:00"
+        },
+        {
+          "code": "61",
+          "province": "陕西",
+          "org": "陕西省教育考试院",
+          "start": "2026-06-26",
+          "startTime": "09:00",
+          "end": "2026-07-02",
+          "endTime": "17:00"
+        },
+        {
+          "code": "62",
+          "province": "甘肃",
+          "org": "甘肃省教育考试院",
+          "start": "2026-06-25",
+          "startTime": "09:00",
+          "end": "2026-07-15",
+          "endTime": "24:00"
+        },
+        {
+          "code": "63",
+          "province": "青海",
+          "org": "青海省教育招生考试院",
+          "start": "2026-06-29",
+          "startTime": "09:00",
+          "end": "2026-07-02",
+          "endTime": "17:00"
+        },
+        {
+          "code": "64",
+          "province": "宁夏",
+          "org": "宁夏教育考试院",
+          "start": "2026-08-27",
+          "startTime": "09:00",
+          "end": "2026-09-04",
+          "endTime": "17:00"
+        },
+        {
+          "code": "65",
+          "province": "新疆",
+          "org": "新疆维吾尔自治区教育考试院",
+          "start": "2026-06-25",
+          "startTime": "10:00",
+          "end": "2026-07-03",
+          "endTime": "19:30"
+        }
+      ]
+    },
+    {
+      "editionId": "ruankao-2026-h2",
+      "programId": "ruankao",
+      "sourceUrl": "https://bm.ruankao.org.cn/",
+      "fetchedAt": "2026-11-24T21:30:00+08:00",
+      "trustTier": "L1",
+      "reviewState": "human_approved",
+      "note": "软考报名平台（bm.ruankao.org.cn）的省级报名时间表，静态 HTML 表格，31 省可直接解析 —— 这是全项目结构化程度最高的一页。 含新疆兵团与香港两个特殊考区（人工补充，官方页面存在但易漏）。",
+      "windows": [
+        {
+          "code": "34",
+          "province": "安徽",
+          "org": "安徽",
+          "start": "2026-08-14",
+          "startTime": "09:00",
+          "end": "2026-08-25",
+          "endTime": "16:00"
+        },
+        {
+          "code": "52",
+          "province": "贵州",
+          "org": "贵州",
+          "start": "2026-08-14",
+          "startTime": "09:00",
+          "end": "2026-09-18",
+          "endTime": "17:00"
+        },
+        {
+          "code": "62",
+          "province": "甘肃",
+          "org": "甘肃",
+          "start": "2026-08-14",
+          "startTime": "09:00",
+          "end": "2026-08-21",
+          "endTime": "18:00"
+        },
+        {
+          "code": "65",
+          "province": "新疆",
+          "org": "新疆",
+          "start": "2026-08-14",
+          "startTime": "09:00",
+          "end": "2026-09-18",
+          "endTime": "17:00"
+        },
+        {
+          "code": "22",
+          "province": "吉林",
+          "org": "吉林",
+          "start": "2026-08-14",
+          "startTime": "09:30",
+          "end": "2026-08-27",
+          "endTime": "23:59"
+        },
+        {
+          "code": "33",
+          "province": "浙江",
+          "org": "浙江",
+          "start": "2026-08-14",
+          "startTime": "10:00",
+          "end": "2026-08-20",
+          "endTime": "16:00"
+        },
+        {
+          "code": "54",
+          "province": "西藏",
+          "org": "西藏",
+          "start": "2026-08-15",
+          "startTime": "00:00",
+          "end": "2026-08-21",
+          "endTime": "17:00"
+        },
+        {
+          "code": "46",
+          "province": "海南",
+          "org": "海南",
+          "start": "2026-08-17",
+          "startTime": "00:00",
+          "end": "2026-08-26",
+          "endTime": "23:59"
+        },
+        {
+          "code": "32",
+          "province": "江苏",
+          "org": "江苏",
+          "start": "2026-08-17",
+          "startTime": "09:00",
+          "end": "2026-09-17",
+          "endTime": "17:00"
+        },
+        {
+          "code": "36",
+          "province": "江西",
+          "org": "江西",
+          "start": "2026-08-17",
+          "startTime": "09:00",
+          "end": "2026-09-17",
+          "endTime": "17:00"
+        },
+        {
+          "code": "41",
+          "province": "河南",
+          "org": "河南",
+          "start": "2026-08-17",
+          "startTime": "09:00",
+          "end": "2026-09-15",
+          "endTime": "17:30"
+        },
+        {
+          "code": "44",
+          "province": "广东",
+          "org": "广东",
+          "start": "2026-08-17",
+          "startTime": "09:00",
+          "end": "2026-08-25",
+          "endTime": "17:00"
+        },
+        {
+          "code": "53",
+          "province": "云南",
+          "org": "云南",
+          "start": "2026-08-17",
+          "startTime": "09:00",
+          "end": "2026-09-11",
+          "endTime": "17:00"
+        },
+        {
+          "code": "31",
+          "province": "上海",
+          "org": "上海",
+          "start": "2026-08-17",
+          "startTime": "10:00",
+          "end": "2026-08-27",
+          "endTime": "16:00"
+        },
+        {
+          "code": "66",
+          "province": "新疆兵团",
+          "org": "新疆兵团",
+          "start": "2026-08-17",
+          "startTime": "10:05",
+          "end": "2026-09-18",
+          "endTime": "17:00"
+        },
+        {
+          "code": "14",
+          "province": "山西",
+          "org": "山西",
+          "start": "2026-08-17",
+          "startTime": "14:30",
+          "end": "2026-09-14",
+          "endTime": "11:30"
+        },
+        {
+          "code": "21",
+          "province": "辽宁",
+          "org": "辽宁",
+          "start": "2026-08-19",
+          "startTime": "08:30",
+          "end": "2026-08-25",
+          "endTime": "16:00"
+        },
+        {
+          "code": "45",
+          "province": "广西",
+          "org": "广西",
+          "start": "2026-08-19",
+          "startTime": "09:00",
+          "end": "2026-08-28",
+          "endTime": "17:00"
+        },
+        {
+          "code": "23",
+          "province": "黑龙江",
+          "org": "黑龙江",
+          "start": "2026-08-20",
+          "startTime": "00:00",
+          "end": "2026-08-26",
+          "endTime": "23:59"
+        },
+        {
+          "code": "37",
+          "province": "山东",
+          "org": "山东",
+          "start": "2026-08-21",
+          "startTime": "09:00",
+          "end": "2026-09-03",
+          "endTime": "16:05"
+        },
+        {
+          "code": "64",
+          "province": "宁夏",
+          "org": "宁夏",
+          "start": "2026-08-21",
+          "startTime": "09:00",
+          "end": "2026-09-10",
+          "endTime": "23:00"
+        },
+        {
+          "code": "15",
+          "province": "内蒙古",
+          "org": "内蒙古",
+          "start": "2026-08-24",
+          "startTime": "00:00",
+          "end": "2026-09-08",
+          "endTime": "11:00"
+        },
+        {
+          "code": "35",
+          "province": "福建",
+          "org": "福建",
+          "start": "2026-08-24",
+          "startTime": "08:00",
+          "end": "2026-09-03",
+          "endTime": "23:59"
+        },
+        {
+          "code": "61",
+          "province": "陕西",
+          "org": "陕西",
+          "start": "2026-08-25",
+          "startTime": "09:00",
+          "end": "2026-09-16",
+          "endTime": "16:00"
+        },
+        {
+          "code": "51",
+          "province": "四川",
+          "org": "四川",
+          "start": "2026-08-26",
+          "startTime": "00:00",
+          "end": "2026-09-09",
+          "endTime": "23:59"
+        },
+        {
+          "code": "12",
+          "province": "天津",
+          "org": "天津",
+          "start": "2026-08-27",
+          "startTime": "09:00",
+          "end": "2026-09-16",
+          "endTime": "17:00"
+        },
+        {
+          "code": "63",
+          "province": "青海",
+          "org": "青海",
+          "start": "2026-08-28",
+          "startTime": "09:00",
+          "end": "2026-09-07",
+          "endTime": "18:00"
+        },
+        {
+          "code": "50",
+          "province": "重庆",
+          "org": "重庆",
+          "start": "2026-08-31",
+          "startTime": "09:00",
+          "end": "2026-09-15",
+          "endTime": "17:00"
+        },
+        {
+          "code": "42",
+          "province": "湖北",
+          "org": "湖北",
+          "start": "2026-08-31",
+          "startTime": "10:00",
+          "end": "2026-09-10",
+          "endTime": "16:00"
+        },
+        {
+          "code": "81",
+          "province": "香港",
+          "org": "香港",
+          "start": "2026-09-01",
+          "startTime": "00:00",
+          "end": "2026-09-18",
+          "endTime": "00:00",
+          "extra": "缴费时间的截止未在页面明确显示"
+        },
+        {
+          "code": "43",
+          "province": "湖南",
+          "org": "湖南",
+          "start": "2026-09-01",
+          "startTime": "08:00",
+          "end": "2026-09-16",
+          "endTime": "12:00"
+        },
+        {
+          "code": "13",
+          "province": "河北",
+          "org": "河北",
+          "start": "2026-09-10",
+          "startTime": "09:30",
+          "end": "2026-09-16",
+          "endTime": "17:00"
+        },
+        {
+          "code": "11",
+          "province": "北京",
+          "org": "北京",
+          "start": "2026-09-11",
+          "startTime": "00:00",
+          "end": "2026-09-17",
+          "endTime": "23:59"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "college-am",
+  "version": "0.1.0",
+  "private": true,
+  "description": "College-AM · 大学生考证与竞赛时间轴：可核查的报名截止日历 + .ics 订阅",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "validate": "node scripts/validate.mjs",
+    "fetch": "node scripts/fetch.mjs",
+    "test": "node scripts/test.mjs",
+    "dev": "node scripts/dev.mjs 4173",
+    "audit": "node scripts/audit.mjs",
+    "check": "node scripts/validate.mjs && node scripts/test.mjs && node scripts/build.mjs && node scripts/audit.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/college-am/college-am"
+  },
+  "keywords": [
+    "college",
+    "china",
+    "certification",
+    "competition",
+    "calendar",
+    "ics",
+    "opendata"
+  ],
+  "license": "AGPL-3.0-or-later"
+}

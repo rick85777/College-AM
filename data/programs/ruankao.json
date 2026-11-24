@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "0.1.0",
+  "programs": [
+    {
+      "id": "ruankao",
+      "kind": "cert",
+      "name": "计算机技术与软件专业技术资格（水平）考试",
+      "shortName": "软考",
+      "aliases": [
+        "软考",
+        "软件水平考试",
+        "软件设计师",
+        "系统架构设计师",
+        "网络工程师",
+        "信息安全工程师",
+        "系统集成项目管理工程师",
+        "程序员",
+        "中级软考",
+        "高级软考"
+      ],
+      "organizer": "工业和信息化部教育与考试中心",
+      "organizerType": "official",
+      "level": "national",
+      "tags": [
+        "计算机",
+        "职称以考代评",
+        "软件",
+        "网络",
+        "项目管理"
+      ],
+      "majors": [
+        {
+          "id": "backend",
+          "weight": "core"
+        },
+        {
+          "id": "network",
+          "weight": "core"
+        },
+        {
+          "id": "embedded",
+          "weight": "recommended"
+        },
+        {
+          "id": "data",
+          "weight": "recommended"
+        },
+        {
+          "id": "all",
+          "weight": "recommended"
+        }
+      ],
+      "officialUrl": "https://www.ruankao.org.cn/",
+      "summary": "工信部教育与考试中心主办的全国计算机技术与软件专业技术资格考试，分初/中/高三级，以考代评对应职称。每年上、下半年各一次，全部机考。",
+      "editions": [
+        {
+          "id": "ruankao-2026-h1",
+          "year": 2026,
+          "round": "h1",
+          "signupStart": null,
+          "signupEnd": null,
+          "eventStart": null,
+          "eventEnd": null,
+          "feeCny": null,
+          "feeNote": "各省自定，以报名平台各省条目为准",
+          "noticeUrl": "https://www.ruankao.org.cn/article/content/2603051204118156470700001.html",
+          "sourceUrl": "https://www.ruankao.org.cn/article/content/2603051204118156470700001.html",
+          "fetchedAt": "2026-11-24T21:30:00+08:00",
+          "verifiedAt": null,
+          "trustTier": "L1",
+          "confidence": 55,
+          "reviewState": "pending",
+          "summary": "2026 年上半年批次。官方年度工作安排以图片形式发布，考试日期未能从正文中机读得出，待人工核对。",
+          "notes": [
+            "官方年度安排原文为两张 PNG 图片，正文无可抽取的文字日期——这正是必须人工确认的典型场景。",
+            "报名入口（含 31 省报名起止时间表）：https://bm.ruankao.org.cn/"
+          ]
+        },
+        {
+          "id": "ruankao-2026-h2",
+          "year": 2026,
+          "round": "h2",
+          "signupStart": null,
+          "signupEnd": null,
+          "eventStart": null,
+          "eventEnd": null,
+          "feeCny": null,
+          "feeNote": "各省自定，以报名平台各省条目为准",
+          "milestones": [
+            {
+              "label": "机考（第一批）",
+              "date": "2026-10-24",
+              "kind": "event"
+            },
+            {
+              "label": "机考（第二批）",
+              "date": "2026-10-25",
+              "kind": "event"
+            }
+          ],
+          "noticeUrl": "https://www.ruankao.org.cn/article/content/2609211354254868000700041.html",
+          "sourceUrl": "https://www.ruankao.org.cn/article/content/2609211354254868000700041.html",
+          "fetchedAt": "2026-11-24T21:30:00+08:00",
+          "verifiedAt": "2026-11-24T21:30:00+08:00",
+          "trustTier": "L1",
+          "confidence": 92,
+          "reviewState": "human_approved",
+          "summary": "2026 年下半年：10 月 24-25 日机考。24 日上午系统架构设计师等高级资格，下午软件设计师/网络工程师等中级资格。",
+          "notes": [
+            "分批实施：系统集成项目管理工程师分 4 个批次，具体批次见准考证。",
+            "各省报名时间不同，2026 年下半年集中在 8 月 14 日 - 9 月 18 日区间。",
+            "成绩于考试结束之日起 45 日内开放查询。"
+          ]
+        }
+      ]
+    }
+  ]
+}
