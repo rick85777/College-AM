@@ -75,7 +75,54 @@ problems += smBad;
 const rb = fs.readFileSync(path.join(DIST, "robots.txt"), "utf8");
 if (!/Sitemap:\s+\S+/.test(rb)) { console.log("  ✗ robots.txt 缺少 Sitemap"); problems++; }
 
-// ---------- 5. 移动端溢出（可选，需无头浏览器） ----------
+// ---------- 5. PWA ----------
+const mfPath = path.join(DIST, "manifest.webmanifest");
+const swPath = path.join(DIST, "sw.js");
+let pwaBad = 0;
+if (!fs.existsSync(mfPath)) { console.log("  ✗ 缺少 manifest.webmanifest"); pwaBad++; }
+else {
+  let mf = null;
+  try { mf = JSON.parse(fs.readFileSync(mfPath, "utf8")); } catch { console.log("  ✗ manifest 不是合法 JSON"); pwaBad++; }
+  if (mf) {
+    for (const k of ["name", "short_name", "start_url", "display", "icons"]) {
+      if (!mf[k]) { console.log("  ✗ manifest 缺字段 " + k); pwaBad++; }
+    }
+    if (!Array.isArray(mf.icons) || mf.icons.length < 2) { console.log("  ✗ manifest 图标少于 2 个"); pwaBad++; }
+    else {
+      let has192 = false, has512 = false;
+      for (const ic of mf.icons) {
+        if (!ic.src) { console.log("  ✗ 图标缺 src"); pwaBad++; continue; }
+        if (ic.type === "image/svg+xml") continue;
+        if (ic.sizes === "192x192") has192 = true;
+        if (ic.sizes === "512x512") has512 = true;
+        const p = path.join(DIST, ic.src);
+        if (!fs.existsSync(p)) { console.log("  ✗ 图标文件不存在: " + ic.src); pwaBad++; }
+        else if (fs.statSync(p).size < 200) { console.log("  ✗ 图标文件过小（可能是坏 PNG）: " + ic.src); pwaBad++; }
+      }
+      if (!has192 || !has512) { console.log("  ✗ manifest 缺少 192x192 或 512x512 图标"); pwaBad++; }
+    }
+    if (!mf.theme_color) { console.log("  ✗ manifest 缺 theme_color"); pwaBad++; }
+  }
+}
+if (!fs.existsSync(swPath)) { console.log("  ✗ 缺少 sw.js"); pwaBad++; }
+else {
+  const sw = fs.readFileSync(swPath, "utf8");
+  for (const k of ["install", "activate", "fetch"]) {
+    if (!new RegExp("addEventListener\\(\"" + k + "\"").test(sw)) { console.log("  ✗ sw.js 缺少 " + k + " 事件"); pwaBad++; }
+  }
+  if (!/caches\.open/.test(sw)) { console.log("  ✗ sw.js 未使用 Cache API"); pwaBad++; }
+}
+// 每个页面都应声明 manifest 与主题色
+let noManifest = 0;
+for (const f of files) {
+  const t = fs.readFileSync(f, "utf8");
+  if (!t.includes('rel="manifest"')) { console.log("  ✗ 页面未声明 manifest: " + rel(f)); noManifest++; }
+}
+pwaBad += noManifest;
+console.log("  PWA       manifest " + (fs.existsSync(mfPath) ? "✓" : "✗") + "，sw.js " + (fs.existsSync(swPath) ? "✓" : "✗") + "，问题 " + pwaBad);
+problems += pwaBad;
+
+// ---------- 6. 移动端溢出（可选，需无头浏览器） ----------
 const CANDIDATES = [
   "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
   "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe",

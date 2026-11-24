@@ -46,10 +46,26 @@ node scripts/build.mjs       # 生成静态站到 dist/
 node scripts/dev.mjs 4173    # 本地预览 http://127.0.0.1:4173
 
 node scripts/fetch.mjs       # 抓取官方源，产出候选变更到 data/review-queue.json
-node scripts/audit.mjs       # 审计产物：断链 / .ics 结构 / sitemap / 移动端溢出
+node scripts/audit.mjs       # 审计产物：断链 / .ics 结构 / sitemap / PWA / 390px 溢出
 
 npm run check                # 一条命令跑完全部（校验 + 测试 + 构建 + 审计）
 ```
+
+---
+
+## 手机端
+
+响应式是第一层，PWA 是第二层——**不做 App 壳，也不上应用商店**。
+
+| 层 | 做了什么 |
+|---|---|
+| 响应式 | 移动优先；390px 下 26 个页面**零横向溢出**（`npm run audit` 用无头 Edge 逐页实测） |
+| 顶栏 | ≤560px 自动换行：品牌名不折行，导航独立成行并做右侧渐隐提示可滑动 |
+| 可安装 | `manifest.webmanifest` + 满版品牌绿图标（192/512，`maskable`）→ 可「添加到主屏幕」，独立窗口打开 |
+| 离线 | `sw.js` stale-while-revalidate：先读缓存再后台更新；断网时首页/日历/省级窗口仍可打开 |
+| 日期订阅 | 每个条目/频道/全省份都有 `.ics`，iOS 日历、Android、Outlook 均可直接订阅 |
+
+> 为什么不做 App：一个一年只需要打开 ≤40 天的工具，装 App 是纯负担。PWA 让"加到桌面"的成本降到一次点击，也不占用户存储。
 
 ---
 
@@ -73,8 +89,10 @@ scripts/
   build.mjs                   # 静态站生成
   dev.mjs                     # 本地静态服务器
   test.mjs                    # 零依赖测试
-  audit.mjs                   # 产物审计（含无头浏览器 390px 溢出测量）
+  audit.mjs                   # 产物审计（断链/.ics/sitemap/PWA/390px 溢出）
 site/assets/style.css         # 设计系统（移动优先 + 深色模式）
+dist/sw.js                    # Service Worker（构建时生成）
+dist/manifest.webmanifest     # PWA 清单（构建时生成）
 dist/                         # 构建产物（.gitignore 掉的）
 docs/                         # 可行性分析报告
 ```

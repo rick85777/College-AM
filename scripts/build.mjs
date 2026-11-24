@@ -4,6 +4,7 @@
  * 输入：data/  |  输出：dist/
  */
 import { mkdir, writeFile, rm, readFile, cp } from "node:fs/promises";
+import zlib from "node:zlib";
 import path from "node:path";
 import { readProgramFiles, readMajors, flatten, isPublished, keyDates, daysUntil } from "../lib/load.mjs";
 import { buildCalendar } from "../lib/ics.mjs";
@@ -78,6 +79,10 @@ function layout({ title, description, body, current = "", base = "" }) {
 <link rel="stylesheet" href="${base}assets/style.css">
 <link rel="alternate" type="text/calendar" title="College-AM 全部日程" href="${base}calendar/all.ics">
 <link rel="icon" href="${base}assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="${base}manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="College-AM">
 </head>
 <body>
 <header class="top">
@@ -92,6 +97,11 @@ function layout({ title, description, body, current = "", base = "" }) {
 ${body}
 </main>
 ${footer(base)}
+<script>
+if ("serviceWorker" in navigator) {
+  addEventListener("load", () => navigator.serviceWorker.register("${base}sw.js").catch(() => {}));
+}
+</script>
 </body>
 </html>`;
 }
@@ -821,6 +831,125 @@ await cp(path.join(SITE, "assets", "style.css"), path.join(DIST, "assets", "styl
 await writeFile(
   path.join(DIST, "assets", "favicon.svg"),
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#1f6f5c"/><path d="M9 22V11l7 7 7-7v11" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+);
+
+// ---------------- PWA ----------------
+const ICON_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="112" fill="#1f6f5c"/><path d="M144 352V160l112 112 112-112v192" stroke="#fff" stroke-width="42" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+/** SVG 不便作 PWA 图标，这里手写一个 192x192 与 512x512 的 PNG（纯色底 + 白色 M 折线太复杂，用纯色圆角 + 字母块） */
+function makeIconPng(size) {
+  const px = size;
+  const raw = Buffer.alloc((px * 3 + 1) * px);
+  const BG = [31, 111, 92];      // #1f6f5c 品牌绿，铺满整块（maskable 需要满版）
+  const FG = [255, 255, 255];
+  const cx = px / 2, cy = px / 2;
+
+  // "M" 几何：落在 maskable 安全区（中心 80% 直径圆）内
+  const safe = px * 0.5 * 0.78;
+  const top = cy - safe * 0.60, bot = cy + safe * 0.60;
+  const halfW = safe * 0.62;
+  const lx = cx - halfW, rx2 = cx + halfW;
+  const stroke = px * 0.075;
+
+  for (let y = 0; y < px; y++) {
+    raw[y * (px * 3 + 1)] = 0;
+    for (let x = 0; x < px; x++) {
+      const o = y * (px * 3 + 1) + 1 + x * 3;
+      let white = false;
+      if (y >= top && y <= bot) {
+        // 两条竖干
+        if (Math.abs(x - lx) <= stroke / 2 || Math.abs(x - rx2) <= stroke / 2) white = true;
+        // 中间 V（只看上半段）
+        const t = (y - top) / (bot - top);
+        if (t < 0.62) {
+          const spread = halfW * (t / 0.62);
+          if (Math.abs(x - (cx - halfW + spread)) <= stroke / 2) white = true;
+          if (Math.abs(x - (cx + halfW - spread)) <= stroke / 2) white = true;
+        }
+      }
+      const c = white ? FG : BG;
+      raw[o] = c[0]; raw[o + 1] = c[1]; raw[o + 2] = c[2];
+    }
+  }
+
+  const idat = zlib.deflateSync(raw, { level: 9 });
+  const crcTable = (() => {
+    const t = new Int32Array(256);
+    for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; t[n] = c; }
+    return t;
+  })();
+  const crc32 = (buf) => { let c = -1; for (let i = 0; i < buf.length; i++) c = crcTable[(c ^ buf[i]) & 0xff] ^ (c >>> 8); return (c ^ -1) >>> 0; };
+  const chunk = (type, data) => {
+    const len = Buffer.alloc(4); len.writeUInt32BE(data.length);
+    const t = Buffer.from(type, "ascii");
+    const crc = Buffer.alloc(4); crc.writeUInt32BE(crc32(Buffer.concat([t, data])));
+    return Buffer.concat([len, t, data, crc]);
+  };
+  const ihdr = Buffer.alloc(13);
+  ihdr.writeUInt32BE(px, 0); ihdr.writeUInt32BE(px, 4); ihdr[8] = 8; ihdr[9] = 2;
+  return Buffer.concat([
+    Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]),
+    chunk("IHDR", ihdr), chunk("IDAT", idat), chunk("IEND", Buffer.alloc(0)),
+  ]);
+}
+
+await writeFile(
+  path.join(DIST, "manifest.webmanifest"),
+  JSON.stringify({
+    name: "College-AM · 大学生考证与竞赛时间轴",
+    short_name: "College-AM",
+    description: "四六级、计算机等级、教资、软考、数模、国创赛的关键日期，含逐省报名窗口。每条都有官方原文链接。",
+    lang: "zh-CN",
+    start_url: "./index.html",
+    scope: "./",
+    display: "standalone",
+    background_color: "#13181b",
+    theme_color: "#1f6f5c",
+    icons: [
+      { src: "assets/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any maskable" },
+      { src: "assets/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" },
+      { src: "assets/favicon.svg", sizes: "any", type: "image/svg+xml" },
+    ],
+  }, null, 2)
+);
+
+await writeFile(path.join(DIST, "assets", "icon-192.png"), makeIconPng(192));
+await writeFile(path.join(DIST, "assets", "icon-512.png"), makeIconPng(512));
+
+// Service Worker：先网后缓存（stale-while-revalidate），离线时回落到缓存
+await writeFile(
+  path.join(DIST, "sw.js"),
+  `const CACHE = "college-am-v1";
+const PRECACHE = ["./", "./index.html", "./assets/style.css", "./calendar.html", "./provinces.html"];
+
+self.addEventListener("install", (e) => {
+  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(PRECACHE)).then(() => self.skipWaiting()));
+});
+
+self.addEventListener("activate", (e) => {
+  e.waitUntil(
+    caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener("fetch", (e) => {
+  if (e.request.method !== "GET") return;
+  e.respondWith(
+    caches.match(e.request).then((hit) => {
+      const net = fetch(e.request)
+        .then((res) => {
+          if (res && res.status === 200) {
+            const copy = res.clone();
+            caches.open(CACHE).then((c) => c.put(e.request, copy));
+          }
+          return res;
+        })
+        .catch(() => hit);
+      return hit || net;
+    })
+  );
+});
+`
 );
 
 const pages = [
