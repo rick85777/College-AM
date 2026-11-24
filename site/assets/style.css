@@ -178,6 +178,8 @@ a.card:hover { border-color: var(--accent); transform: translateY(-1px); }
 .prov dt { color: var(--ink-3); display: inline; }
 .prov dd { display: inline; margin: 0 0 0 4px; overflow-wrap: anywhere; }
 .prov .line { display: block; }
+.prov .line + .line { margin-top: 10px; }
+.prov .line { line-height: 1.8; }
 .prov a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; word-break: break-word; }
 
 table.timeline { width: 100%; border-collapse: collapse; font-size: 13.5px; }
@@ -271,7 +273,8 @@ footer .disclaimer { margin-top: 12px; padding: 10px 12px; background: var(--lin
   table.timeline th, table.timeline td { padding: 7px 4px; }
   table.timeline td.mono { white-space: normal; }
   .prov { font-size: 12.5px; padding: 12px 13px; }
-  .prov .line { display: block; margin-bottom: 3px; }
+  .prov .line { display: block; }
+  .prov .line + .line { margin-top: 5px; }
   .detail-head h1 { font-size: 20px; }
   .btn { padding: 8px 13px; font-size: 13.5px; }
   h2 { font-size: 16px; }

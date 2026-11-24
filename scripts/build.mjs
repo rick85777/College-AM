@@ -59,6 +59,7 @@ function layout({ title, description, body, current = "", base = "" }) {
     ["certs.html", "考证"],
     ["contests.html", "竞赛"],
     ["majors.html", "专业频道"],
+    ["zhaopin.html", "招聘跳转"],
     ["provinces.html", "省级窗口"],
     ["sources.html", "数据来源"],
   ];
@@ -526,6 +527,92 @@ const calendarPage = layout({
 </section>`,
 });
 
+
+// ---------------- 招聘跳转（只做外链索引，绝不做投递闭环） ----------------
+// 合规依据见 docs/research/02-source-reliability.md §4.3：
+// 《网络招聘服务管理规定》——提供投递/简历/撮合才需人力资源服务许可证；
+// 本站只做<a>跳转，页面上物理不存在站内简历表单。
+const JOB_PORTALS = [
+  {
+    group: "官方 / 政策性",
+    note: "国家平台，岗位信息由高校与用人单位直接上报，真实性最高。",
+    links: [
+      { name: "国家大学生就业服务平台", url: "https://www.ncss.cn/", who: "教育部", desc: "原 24365 平台。省级、校级就业网可按学校切换，校招主渠道。" },
+      { name: "国聘", url: "https://www.iguopin.com/", who: "国务院国资委等", desc: "央企、国企、事业单位校招与社会招聘的集中发布口。" },
+      { name: "中国研究生招生信息网", url: "https://yz.chsi.com.cn/", who: "教育部", desc: "考研报名、调剂、招生简章的唯一官方入口。不是招聘，但属于同一条升学路径。" },
+    ],
+  },
+  {
+    group: "商业平台",
+    note: "岗位量大、更新快，但信息质量由平台方把持，本站不对其内容负责。",
+    links: [
+      { name: "前程无忧", url: "https://www.51job.com/", who: "前程无忧", desc: "校招与社招并行，宣讲会信息较全。" },
+      { name: "BOSS 直聘", url: "https://www.zhipin.com/", who: "看准科技", desc: "直接与用人方沟通，适合找实习。" },
+      { name: "实习僧", url: "https://www.shixiseng.com/", who: "实习僧", desc: "大学生实习与校招为主，互联网岗位集中。" },
+      { name: "应届生求职网", url: "https://www.yingjiesheng.com/", who: "应届生求职网", desc: "校招笔试面试经验与时间线整理。" },
+    ],
+  },
+];
+
+
+// ---------------- 页面：招聘跳转 ----------------
+function zhaopinPage() {
+  return layout({
+    title: "招聘与升学跳转 · College-AM",
+    description: "只做跳转，不做投递。国家大学生就业服务平台、国聘、研招网等官方入口，以及主流商业招聘平台。",
+    current: "zhaopin.html",
+    body: `
+<section class="hero">
+  <h1>招聘跳转</h1>
+  <p>这里<b>只有链接，没有投递表单</b>。所有岗位信息、简历投递都在原站完成——我们不收集简历、不代收职位、不参与撮合。</p>
+  <div class="cta">
+    <a class="btn primary" href="certs.html">看考证时间 →</a>
+    <a class="btn" href="contests.html">看竞赛时间 →</a>
+  </div>
+  <div class="meta">为什么只做外链：见页面底部「合规说明」</div>
+</section>
+
+${JOB_PORTALS.map(
+  (g) => `
+<section>
+  <h2>${esc(g.group)}</h2>
+  <p style="margin:-6px 0 14px;font-size:13px;color:var(--ink-3)">${esc(g.note)}</p>
+  <div class="list two">
+  ${g.links
+    .map(
+      (l) => `<a class="card" href="${esc(l.url)}" target="_blank" rel="noopener nofollow" style="display:block">
+      <div class="row">
+        <span class="name">${esc(l.name)} ↗</span>
+      </div>
+      <div class="desc">${esc(l.desc)}</div>
+      <div style="margin-top:8px"><span class="tag">${esc(l.who)}</span></div>
+    </a>`
+    )
+    .join("")}
+  </div>
+</section>`
+).join("")}
+
+<section>
+  <h2>合规说明</h2>
+  <div class="prov">
+    <span class="line"><dt>为什么没有投递按钮</dt> <dd>《网络招聘服务管理规定》（人社部令第 44 号）规定，从事网络招聘服务（发布招聘信息、撮合、代收简历）需取得<strong>人力资源服务许可证</strong>。本站只做外链跳转，不提供上述任何一项，因此不构成该许可事项。</dd></span>
+    <span class="line"><dt>我们不做什么</dt> <dd>不收集简历 · 不代收职位 · 不做站内申请 · 不做付费发岗 · 不撮合面试</dd></span>
+    <span class="line"><dt>你能做什么</dt> <dd>点进去，在原站完成一切操作。遇到可疑岗位，请以原站与用人单位官方渠道为准。</dd></span>
+  </div>
+</section>
+
+<section>
+  <h2>更实际的一条建议</h2>
+  <p style="font-size:13.5px;color:var(--ink-2);line-height:1.85">
+    校招真正的信息差不在"哪个平台"，而在<b>你学校就业信息网发布的第一批定向宣讲</b>。
+    先去 <a href="https://www.ncss.cn/" target="_blank" rel="noopener nofollow">ncss.cn</a> 找到你学校的就业网入口，把它设成浏览器书签——
+    这比在任何聚合站刷新都有效。
+  </p>
+</section>`,
+  });
+}
+
 // ---------------- 页面：数据来源 ----------------
 const sourcesPage = layout({
   title: "数据来源与可信等级 · College-AM",
@@ -743,6 +830,7 @@ const pages = [
   ["contests.html", listPage("contest", "竞赛", "对保研、求职真正有用的比赛。按含金量与专业相关度筛选，只收官方主办方。")],
   ["majors.html", majorsIndexPage],
   ["provinces.html", provincesPage()],
+  ["zhaopin.html", zhaopinPage()],
   ["sources.html", sourcesPage],
   ["about.html", aboutPage],
 ];
@@ -840,6 +928,7 @@ const urls = [
   "certs.html",
   "contests.html",
   "majors.html",
+  "zhaopin.html",
   "provinces.html",
   "sources.html",
   "about.html",
