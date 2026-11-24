@@ -58,12 +58,13 @@ m/*.html          7 个职业出口频道
 
 ```bash
 node scripts/validate.mjs    # 校验 data/ 下的所有 JSON
-node scripts/test.mjs        # 跑测试（35 个断言）
+node scripts/test.mjs        # 跑测试（36 个断言）
 node scripts/build.mjs       # 生成静态站到 dist/
 node scripts/dev.mjs 4173    # 本地预览 http://127.0.0.1:4173
 
 node scripts/fetch.mjs       # 抓取官方源，产出候选变更到 data/review-queue.json
 node scripts/audit.mjs       # 审计产物：断链 / .ics 结构 / sitemap / PWA / 390px 溢出
+node scripts/check-ai-links.mjs  # 实测 109 个 AI 外链，回写验证日期（--dry-run 只看不写）
 
 npm run check                # 一条命令跑完全部（校验 + 测试 + 构建 + 审计）
 ```
@@ -126,7 +127,10 @@ scripts/
   build.mjs                   # 静态站生成
   dev.mjs                     # 本地静态服务器
   test.mjs                    # 零依赖测试
-  audit.mjs                   # 产物审计（断链/.ics/sitemap/PWA/390px 溢出）
+  audit.mjs                   # 产物审计（断链/.ics/sitemap/PWA/AI板块/390px 溢出）
+  check-ai-links.mjs          # 外链存活检查，回写 verified（唯一能写这一列的入口）
+.github/workflows/ci.yml      # 每次 push：校验 + 测试 + 构建 + 审计
+.github/workflows/check-links.yml  # 每周一：实测外链，失效的开 issue
 site/assets/style.css         # 设计系统（移动优先 + 深色模式）
 dist/sw.js                    # Service Worker（构建时生成）
 dist/manifest.webmanifest     # PWA 清单（构建时生成）
@@ -225,7 +229,7 @@ signupStart, signupEnd, eventStart, eventEnd, feeCny, feeNote
 
 ## 路线图
 
-- **M0（当前，已完成）**：10 个条目 / 8 个已核实届次 / 7 个职业出口频道 / 27 个页面 / 12 个 .ics / 109 个 AI 入口 / PWA 可安装 / 390px 零溢出 / 35 个测试
+- **M0（当前，已完成）**：10 个条目 / 8 个已核实届次 / 7 个职业出口频道 / 27 个页面 / 12 个 .ics / 109 个 AI 入口 / PWA 可安装 / 390px 零溢出 / 36 个测试
 - **M1**：30 个条目、5 个频道满负荷、自动抓取 1 个源（bm.ruankao.org.cn 省级表格）、订阅邮件
 - **M2**：开放投稿、共建人制度、schema v1.0 冻结
 

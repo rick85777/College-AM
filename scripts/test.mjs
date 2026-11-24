@@ -277,6 +277,17 @@ test("过期的验证日期会被判为 error（>180 天）", () => {
   assert.ok(r2.errors.some((e) => e.includes("已过期")), "应报过期错误：" + r2.errors.join("; "));
 });
 
+test("超过 90 天未复验标 \"待复验\"（warning + _stale）", () => {
+  const bad = JSON.parse(JSON.stringify(aiData));
+  const days = (n) => { const d = new Date(Date.now() - n * 86400000); return d.toISOString().slice(0, 10); };
+  bad.groups[0].sections[0].items[0].verified = days(120);
+  bad.groups[0].sections[0].items[1].verified = days(120);
+  const r4 = validateAi(bad);
+  assert.ok(r4.warnings.some((w) => w.includes("待复验") || w.includes("90 天")), "应报待复验警告：" + r4.warnings.join("; "));
+  const it = bad.groups[0].sections[0].items[0];
+  assert.equal(it._stale, true, "应标记 _stale");
+});
+
 test("fit 过短会被判为 error（<12 字）", () => {
   const bad = JSON.parse(JSON.stringify(aiData));
   bad.groups[0].sections[0].items[0].fit = "能用";

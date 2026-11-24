@@ -1,0 +1,68 @@
+name: 外链存活检查
+
+# AI 板块卡片上的"验证日期"只由这个工作流产出——手写的日期等于没有。
+# 页面上：超 90 天未复验标"待复验"，超 180 天构建直接失败（见 lib/ai.mjs）。
+
+on:
+  schedule:
+    # 每周一 03:00 UTC（北京时间 11:00）
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 实测全部外链并回写 verified
+        id: probe
+        run: |
+          node scripts/check-ai-links.mjs | tee /tmp/out.txt
+          echo "dead=$(grep -c '^  ✗' /tmp/out.txt || true)" >> $GITHUB_OUTPUT
+
+      - name: 提交验证日期
+        run: |
+          git config user.name "College-AM Bot"
+          git config user.email "bot@college-am.dev"
+          if git diff --quiet data/ai.json; then
+            echo "没有变化"
+          else
+            git add data/ai.json
+            git commit -m "chore: 外链存活检查（$(date -u +%F)）"
+            git push
+          fi
+
+      - name: 打不开的条目开 issue
+        if: steps.probe.outputs.dead != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const out = fs.readFileSync("/tmp/out.txt", "utf8");
+            const dead = out.split("\n").filter((l) => l.startsWith("  ✗"));
+            const body = [
+              "本周外链存活检查发现 " + dead.length + " 个地址打不开：",
+              "",
+              "```",
+              ...dead,
+              "```",
+              "",
+              "**处理方式**：先在浏览器里手动打开确认。如果确实失效，从 `data/ai.json` 删掉或换成替代入口；如果是站点临时抖动，关掉这个 issue 即可——下周会重新检查。",
+              "",
+              "> 这些条目的 `verified` 日期**没有**被更新（脚本只回写能打开的），所以它们会自然变旧，最终在页面上显示「待复验」或被构建拦下。",
+            ].join("\n");
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "🔗 " + dead.length + " 个 AI 外链打不开（" + new Date().toISOString().slice(0, 10) + "）",
+              body,
+              labels: ["data-error"],
+            });

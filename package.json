@@ -14,7 +14,9 @@
     "test": "node scripts/test.mjs",
     "dev": "node scripts/dev.mjs 4173",
     "audit": "node scripts/audit.mjs",
-    "check": "node scripts/validate.mjs && node scripts/test.mjs && node scripts/build.mjs && node scripts/audit.mjs"
+    "check": "node scripts/validate.mjs && node scripts/test.mjs && node scripts/build.mjs && node scripts/audit.mjs",
+    "check-links": "node scripts/check-ai-links.mjs",
+    "check-links:dry": "node scripts/check-ai-links.mjs --dry-run"
   },
   "repository": {
     "type": "git",
