@@ -121,7 +121,7 @@ function footer(base) {
       <a href="${base}sources.html">数据来源与可信等级</a> ·
       <a href="${base}about.html">关于与免责声明</a> ·
       <a href="${base}calendar/all.ics">订阅全部日程 (.ics)</a> ·
-      <a href="https://github.com/college-am/college-am">GitHub</a>
+      <a href="https://github.com/rick85777/College-AM">GitHub</a>
     </div>
     <div class="disclaimer">
       本站只做信息索引与原文跳转，<strong>不转载公告全文、不提供报名代理、不接收简历、不参与任何招聘流程</strong>。
@@ -512,7 +512,7 @@ ${current?.notes?.length ? `<section><h2>说明</h2><ul style="font-size:13.5px;
 <section>
   <h2>发现信息有误？</h2>
   <p style="font-size:13.5px;color:var(--ink-2)">本站每条信息都保留了官方原文链接。如果你发现日期或费用与官方不符，请附上官方链接提交更正，我们 24 小时内处理。</p>
-  <div class="cta"><a class="btn" href="https://github.com/college-am/college-am/issues/new?template=data-error.yml&title=[纠错]+" target="_blank" rel="noopener">提交更正 ↗</a></div>
+  <div class="cta"><a class="btn" href="https://github.com/rick85777/College-AM/issues/new?template=data-error.yml&title=[纠错]+" target="_blank" rel="noopener">提交更正 ↗</a></div>
 </section>`,
   });
 }
@@ -807,8 +807,8 @@ const aboutPage = layout({
   <h2>发现错误？</h2>
   <p>请带上官方链接提交更正。核实为错会在 24 小时内下架该字段，并记录更正日志。</p>
   <div class="cta">
-    <a class="btn" href="https://github.com/college-am/college-am/issues/new?template=data-error.yml" target="_blank" rel="noopener">提交更正 ↗</a>
-    <a class="btn" href="https://github.com/college-am/college-am" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="btn" href="https://github.com/rick85777/College-AM/issues/new?template=data-error.yml" target="_blank" rel="noopener">提交更正 ↗</a>
+    <a class="btn" href="https://github.com/rick85777/College-AM" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
 </section>
 
@@ -1150,7 +1150,8 @@ for (const c of majors.channels) {
 }
 
 // ---- robots / sitemap ----
-const SITE_ORIGIN = "https://college-am.example"; // 部署时替换为真实域名
+// 站点根地址：GitHub Pages 用仓库子路径，自定义域名时用环境变量覆盖（SITE_ORIGIN=https://x.com npm run build）
+const SITE_ORIGIN = (process.env.SITE_ORIGIN || "https://rick85777.github.io/College-AM").replace(/\/$/, "");
 await writeFile(path.join(DIST, "robots.txt"), "User-agent: *\nAllow: /\nSitemap: " + SITE_ORIGIN + "/sitemap.xml\n");
 const urls = [
   "",
@@ -1170,7 +1171,7 @@ const urls = [
 await writeFile(
   path.join(DIST, "sitemap.xml"),
   '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-    urls.map((u) => "  <url><loc>https://college-am.example/" + u + "</loc></url>").join("\n") +
+    urls.map((u) => "  <url><loc>" + SITE_ORIGIN + "/" + u + "</loc></url>").join("\n") +
     "\n</urlset>\n"
 );
 

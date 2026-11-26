@@ -76,13 +76,39 @@ npm run check                # 一条命令跑完全部（校验 + 测试 + 构�
 
 ---
 
+---
+
+## 部署
+
+仓库自带 [`.github/workflows/pages.yml`](.github/workflows/pages.yml)：push 到 `main` 就跑 校验 → 测试 → 构建，然后把 `dist/` 发到 GitHub Pages。
+
+首次启用只需在仓库 **Settings → Pages → Build and deployment → Source** 里选 **GitHub Actions**，之后每次 push 自动上线：
+
+```
+https://<你的用户名>.github.io/College-AM/
+```
+
+站点根地址在 `scripts/build.mjs` 里由 `SITE_ORIGIN` 决定，默认按上面的仓库子路径生成 `sitemap.xml` 与 `robots.txt`。改用自定义域名时用环境变量覆盖，不用改代码：
+
+```bash
+# 本地构建时指定
+SITE_ORIGIN=https://am.example.com node scripts/build.mjs
+
+# GitHub Actions 里：Settings → Variables 加 SITE_ORIGIN，
+# 再在 pages.yml 的「校验 + 测试 + 构建」步骤上加 env: SITE_ORIGIN: ${{ vars.SITE_ORIGIN }}
+```
+
+> 产物是**纯相对路径**的静态文件，所以扔在域名根、仓库子路径、还是直接双击 `dist/index.html` 都能跑——这也是它能同时当 PWA 和「本地桌面快捷方式」的原因。
+
+---
+
 ## 手机端
 
 响应式是第一层，PWA 是第二层——**不做 App 壳，也不上应用商店**。
 
 | 层 | 做了什么 |
 |---|---|
-| 响应式 | 移动优先；390px 下 27 个页面**零横向溢出**（`npm run audit` 用无头 Edge 逐页实测） |
+| 响应式 | 移动优先；390px 下 28 个页面**零横向溢出**（`npm run audit` 用无头 Edge 逐页实测） |
 | 顶栏 | ≤560px 自动换行：品牌名不折行，导航独立成行并做右侧渐隐提示可滑动 |
 | 可安装 | `manifest.webmanifest` + 满版品牌绿图标（192/512，`maskable`）→ 可「添加到主屏幕」，独立窗口打开 |
 | 离线 | `sw.js` stale-while-revalidate：先读缓存再后台更新；断网时首页/日历/省级窗口仍可打开 |
@@ -138,6 +164,7 @@ scripts/
   check-ai-links.mjs          # 外链存活检查，回写 verified（唯一能写这一列的入口）
 .github/workflows/ci.yml      # 每次 push：校验 + 测试 + 构建 + 审计
 .github/workflows/check-links.yml  # 每周一：实测外链，失效的开 issue
+.github/workflows/pages.yml     # push 到 main 自动构建并发布到 GitHub Pages
 site/assets/style.css         # 设计系统（移动优先 + 深色模式）
 site/assets/quick.js          # 浏览器端检索（约 4.8KB，XHR 拉索引后本地匹配）
 dist/sw.js                    # Service Worker（构建时生成）

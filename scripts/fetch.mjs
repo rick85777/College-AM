@@ -82,7 +82,7 @@ async function fetchSource() {
   const started = Date.now();
   const res = await fetch(SOURCE.url, {
     headers: {
-      "user-agent": "College-AM/0.1 (+https://github.com/college-am/college-am; low-frequency static indexer)",
+      "user-agent": "College-AM/0.1 (+https://github.com/rick85777/College-AM; low-frequency static indexer)",
       "accept-language": "zh-CN,zh;q=0.9",
     },
     signal: AbortSignal.timeout(20000),

@@ -6,7 +6,7 @@
 
 发现某条日期、费用、主办方与你看到的官方原文不一致：
 
-1. 打开 [Issues](https://github.com/college-am/college-am/issues/new?template=data-error.yml)
+1. 打开 [Issues](https://github.com/rick85777/College-AM/issues/new?template=data-error.yml)
 2. 填：哪个条目、哪个字段、正确值、**官方链接**（没有官方链接的纠错不会被采纳）
 3. 24 小时内核实 → 错误则立刻下架该字段并记录日志
 

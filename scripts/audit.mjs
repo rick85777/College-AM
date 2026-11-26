@@ -60,9 +60,20 @@ problems += icsBad;
 // ---------- 3. sitemap ----------
 const sm = fs.readFileSync(path.join(DIST, "sitemap.xml"), "utf8");
 let smN = 0, smBad = 0;
+// 站点可能部署在域名根，也可能部署在仓库子路径（GitHub Pages 的 /<repo>/）。
+// 所以按路径段从长到短试，第一个文件真实存在的，就是站内相对路径。
+const locPath = (url) => {
+  const full = url.replace(/^https?:\/\/[^/]+\//, "");
+  const segs = full.split("/");
+  for (let i = 0; i <= segs.length; i++) {
+    const rel = segs.slice(i).join("/");
+    if (fs.existsSync(path.join(DIST, rel || "index.html"))) return rel;
+  }
+  return full;
+};
 for (const m of sm.matchAll(/<loc>([^<]+)<\/loc>/g)) {
   smN++;
-  const u = m[1].replace(/^https?:\/\/[^/]+\//, "");
+  const u = locPath(m[1]);
   const t = path.join(DIST, u || "index.html");
   if (!fs.existsSync(t)) { console.log("  ✗ sitemap 指向不存在的页面: " + m[1]); smBad++; }
 }
