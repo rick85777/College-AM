@@ -157,7 +157,68 @@ else {
 if (aiBad) console.log("  （ai.html 缺失或异常，先 npm run build）");
 problems += aiBad;
 
-// ---------- 7. 移动端溢出（可选，需无头浏览器） ----------
+// ---------- 7. 快速检索 ----------
+// 五个栏目 + 构建期索引。索引与页面必须同版本，否则会出现「搜得到但点进去 404」。
+let qBad = 0;
+const qPage = path.join(DIST, "search.html");
+const qIndex = path.join(DIST, "search-index.json");
+const qJs = path.join(DIST, "assets", "quick.js");
+if (!fs.existsSync(qPage)) { console.log("  ✗ 缺少 search.html"); qBad++; }
+else {
+  const qh = fs.readFileSync(qPage, "utf8");
+  const secs = [...qh.matchAll(/<section id="([a-z]+)"/g)].map((m) => m[1]);
+  const want = ["kw", "time", "prov", "tag", "dir"];
+  if (JSON.stringify(secs) !== JSON.stringify(want)) {
+    console.log("  ✗ search.html 分区为 [" + secs.join(",") + "]，应为 [" + want.join(",") + "]");
+    qBad++;
+  }
+  if (!/assets\/quick\.js/.test(qh)) { console.log("  ✗ search.html 未引入 quick.js"); qBad++; }
+  if (!/<noscript>/.test(qh)) { console.log("  ✗ search.html 缺 <noscript> 降级（无 JS 时无法检索）"); qBad++; }
+  const qExt = (qh.match(/<a [^>]*href="https?:[^"]*"[^>]*>/g) || []);
+  const qNoRel = qExt.filter((a) => /target="_blank"/.test(a) && !/rel="[^"]*noopener/.test(a));
+  if (qNoRel.length) { console.log("  ✗ search.html 有 " + qNoRel.length + " 个外链缺 rel=noopener"); qBad++; }
+}
+if (!fs.existsSync(qJs)) { console.log("  ✗ 缺少 assets/quick.js"); qBad++; }
+else {
+  const jsBytes = fs.statSync(qJs).size;
+  // 红线 6KB：这个文件是首屏阻塞资源，膨胀会拖慢检索
+  if (jsBytes > 6 * 1024) { console.log("  ✗ quick.js " + (jsBytes / 1024).toFixed(1) + "KB，超过 6KB 红线"); qBad++; }
+}
+if (!fs.existsSync(qIndex)) { console.log("  ✗ 缺少 search-index.json"); qBad++; }
+else {
+  let docs = null;
+  try { docs = JSON.parse(fs.readFileSync(qIndex, "utf8")); }
+  catch { console.log("  ✗ search-index.json 不是合法 JSON"); qBad++; }
+  if (docs) {
+    if (!Array.isArray(docs)) { console.log("  ✗ search-index.json 顶层不是数组"); qBad++; }
+    else {
+      if (docs.length < 180) { console.log("  ✗ 索引仅 " + docs.length + " 条（<180）"); qBad++; }
+      const byType = {};
+      let broken = 0, noAnchor = 0;
+      const htmlCache = new Map();
+      const readCache = (f) => {
+        if (!htmlCache.has(f)) htmlCache.set(f, fs.existsSync(f) ? fs.readFileSync(f, "utf8") : null);
+        return htmlCache.get(f);
+      };
+      for (const d of docs) {
+        byType[d.t] = (byType[d.t] || 0) + 1;
+        if (!d.t || !d.id || !d.ti || !d.u || typeof d.n !== "string" || !d.n) { broken++; continue; }
+        const [file, frag] = d.u.split("#");
+        const target = readCache(path.join(DIST, file));
+        if (target === null) { broken++; continue; }
+        if (frag && target.indexOf('id="' + frag + '"') === -1) noAnchor++;
+      }
+      if (broken) { console.log("  ✗ 索引有 " + broken + " 条指向不存在的页面或字段不全"); qBad++; }
+      if (noAnchor) { console.log("  ✗ 索引有 " + noAnchor + " 条锚点在目标页里找不到（会跳到页顶）"); qBad++; }
+      const typeStr = Object.keys(byType).sort().map((k) => k + " " + byType[k]).join(" / ");
+      console.log("  检索页    search.html 五栏，索引 " + docs.length + " 条（" + typeStr + "），问题 " + qBad);
+    }
+  }
+}
+if (qBad) console.log("  （search.html 缺失或异常，先 npm run build）");
+problems += qBad;
+
+// ---------- 8. 移动端溢出（可选，需无头浏览器） ----------
 const CANDIDATES = [
   "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
   "C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe",

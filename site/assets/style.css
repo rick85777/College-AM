@@ -399,3 +399,105 @@ h3 .sub { font-weight: 400; color: var(--ink-3); font-size: 12.5px; margin-left:
   .ai-more > p { padding: 2px 14px 12px; }
   .ai-jump { margin-top: 16px; }
 }
+
+/* ---------- 快速检索页 · 五个栏目 ---------- */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.qbox { margin: 0 0 8px; }
+.qinput {
+  width: 100%; box-sizing: border-box;
+  padding: 12px 14px; font-size: 16px; font-family: inherit;
+  color: var(--ink); background: var(--paper-2);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  -webkit-appearance: none; appearance: none;
+}
+.qinput::-webkit-search-cancel-button { -webkit-appearance: none; }
+.qinput:focus {
+  outline: 2px solid var(--accent); outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+.qtypes { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.qtype {
+  font: inherit; font-size: 13px; line-height: 1.6;
+  padding: 5px 13px; border-radius: 999px; cursor: pointer;
+  color: var(--ink-2); background: var(--paper-2);
+  border: 1px solid var(--line);
+}
+.qtype:hover { border-color: var(--accent); color: var(--accent); }
+.qtype.is-on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+.qhint { margin: 12px 0 0; font-size: 12.5px; color: var(--ink-3); line-height: 1.7; }
+
+.qresults { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
+.qhit a {
+  display: block; padding: 11px 14px;
+  background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius);
+}
+.qhit a:hover { border-color: var(--accent); }
+.qhit-type { margin-right: 8px; vertical-align: 1px; }
+.qhit-t { font-weight: 620; font-size: 14.5px; }
+.qhit-s { display: block; margin-top: 3px; font-size: 12.5px; color: var(--ink-3); }
+
+/* 时间三档 */
+.qgrid { display: grid; gap: 14px; }
+@media (min-width: 720px) { .qgrid { grid-template-columns: 1fr 1fr 1fr; } }
+.qb {
+  padding: 14px 16px; border-radius: var(--radius);
+  border: 1px solid var(--line); background: var(--paper-2);
+}
+.qb-h { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+.qb-h .n { font-family: var(--mono); font-size: 20px; font-weight: 700; letter-spacing: -.03em; }
+.qb-h .t { font-size: 13px; color: var(--ink-2); }
+.qb-list { list-style: none; margin: 0; padding: 0; }
+.qb-list li + li { margin-top: 7px; }
+.qb-list a { font-size: 13px; line-height: 1.6; display: block; }
+.qb-list a:hover { color: var(--accent); }
+.qb-list .d { color: var(--ink-3); margin-right: 6px; }
+.qb-list .tag { margin-left: 6px; font-size: 11px; }
+.qb-empty { margin: 0; font-size: 12.5px; color: var(--ink-3); line-height: 1.7; }
+
+/* 省份胶囊 */
+.prow { padding: 10px 0; border-bottom: 1px solid var(--line-2); }
+.prow:last-child { border-bottom: 0; }
+.prow .pname {
+  display: block; font-size: 12.5px; color: var(--ink-3);
+  font-weight: 600; margin-bottom: 7px; letter-spacing: .02em;
+}
+.pchips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  display: inline-block; padding: 3px 10px;
+  font-size: 12.5px; color: var(--ink-2);
+  background: var(--line-2); border-radius: 999px;
+}
+.chip:hover { background: var(--accent-soft); color: var(--accent); }
+.chip-dir { font-size: 13.5px; padding: 6px 14px; background: var(--paper-2); border: 1px solid var(--line); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* 标签行 */
+.tagrow { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 10px 0; border-bottom: 1px solid var(--line-2); }
+.tagrow:last-child { border-bottom: 0; }
+.tagname { font-size: 13.5px; font-weight: 620; flex: 0 0 auto; }
+.tagname .n {
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  color: var(--ink-3); margin-left: 6px;
+}
+.taglinks { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; color: var(--ink-2); }
+.taglinks a { border-bottom: 1px dotted var(--line); }
+.taglinks a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* 锚点行/卡片在跳转后短暂高亮，让人一眼看到落在哪 */
+:target { scroll-margin-top: 72px; }
+@media (max-width: 560px) { :target { scroll-margin-top: 100px; } }
+tr[id]:target td, li[id]:target .ai-card { background: var(--accent-soft); }
+tr[id]:target td { box-shadow: inset 0 0 0 1px var(--accent); }
+
+@media (max-width: 560px) {
+  .qinput { font-size: 16px; } /* <16px 时 iOS 会放大页面 */
+  .qb { padding: 12px 14px; }
+  .tagrow { display: block; }
+  .taglinks { margin-top: 5px; }
+}

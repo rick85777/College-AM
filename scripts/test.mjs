@@ -3,12 +3,15 @@
  * 零依赖测试。断言用 node:assert/strict。
  */
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { buildCalendar, __internal as icsInternal } from "../lib/ics.mjs";
-import { daysUntil, keyDates } from "../lib/load.mjs";
+import { daysUntil, keyDates, readProgramFiles, isPublished } from "../lib/load.mjs";
 import { validateFile, MANUAL_ONLY_FIELDS } from "../lib/schema.mjs";
 import { extractRows, parseWindow } from "./fetch.mjs";
 import { validateProvinceSignup } from "../lib/province.mjs";
 import { loadAi, validateAi, chars, allItems } from "../lib/ai.mjs";
+import { norm, tokens, buildDocs, search, buildTagIndex, DOC_LABEL } from "../lib/search.mjs";
 
 let pass = 0;
 let fail = 0;
@@ -293,6 +296,114 @@ test("fit 过短会被判为 error（<12 字）", () => {
   bad.groups[0].sections[0].items[0].fit = "能用";
   const r3 = validateAi(bad);
   assert.ok(r3.errors.some((e) => e.includes("fit")), "应报 fit 错误：" + r3.errors.join("; "));
+});
+
+// ---------- 快速检索 ----------
+console.log("\n快速检索");
+
+const progFiles = await readProgramFiles();
+const searchPrograms = [];
+for (const { data } of progFiles) {
+  for (const p of data.programs) {
+    searchPrograms.push({ ...p, editions: p.editions.map((e) => ({ ...e, _published: isPublished(e) })) });
+  }
+}
+const SEARCH_DOCS = buildDocs({ programs: searchPrograms, provinceData: provRes.data, aiGroups: aiData.groups });
+
+test("norm 去标点、去空白、转小写", () => {
+  assert.equal(norm("  大学英语四级 / CET-4 "), "大学英语四级cet4");
+  assert.equal(norm("蓝桥杯（软件类）"), "蓝桥杯软件类");
+  assert.equal(norm("A.I. 工具"), "ai工具");
+  assert.equal(norm("ＫＡＧＧＬＥ"), "kaggle");
+  assert.equal(norm("week-end~1"), "weekend1");
+  assert.equal(norm(null), "");
+});
+
+test("tokens 按空白切分并各自归一化", () => {
+  assert.deepEqual(tokens("软考  报名"), ["软考", "报名"]);
+  assert.deepEqual(tokens("  "), []);
+  assert.deepEqual(tokens("CET-4/六级"), ["cet4六级"]);
+});
+
+test("索引覆盖三类共 180+ 条", () => {
+  assert.ok(SEARCH_DOCS.length >= 180, "只有 " + SEARCH_DOCS.length + " 条");
+  const types = new Set(SEARCH_DOCS.map((d) => d.t));
+  assert.deepEqual([...types].sort(), ["ai", "program", "province"]);
+  for (const t of types) assert.ok(DOC_LABEL[t], t + " 缺标签");
+});
+
+test("索引链接指向真实页面与锚点", () => {
+  for (const d of SEARCH_DOCS) {
+    assert.ok(d.u, d.id + " 缺链接");
+    if (d.t === "program") assert.match(d.u, /^p\/[a-z0-9-]+\.html$/);
+    if (d.t === "province") assert.match(d.u, /^provinces\.html#pv-[a-z0-9-]+-[A-Za-z0-9]+$/);
+    if (d.t === "ai") assert.match(d.u, /^ai\.html#ai-[a-z0-9-]+$/);
+  }
+});
+
+test("索引里每条都预归一化了 n/nt/k", () => {
+  for (const d of SEARCH_DOCS) {
+    assert.equal(typeof d.n, "string");
+    assert.ok(d.n.length > 0, d.id + " n 为空");
+    assert.equal(d.n, norm(d.n), d.id + " n 未归一化");
+    assert.equal(d.nt, norm(d.nt));
+    assert.equal(d.k, norm(d.k));
+  }
+});
+
+test("搜索：标题命中排在正文命中前", () => {
+  const r = search(SEARCH_DOCS, "软考", 100);
+  assert.ok(r.total > 0, "应命中软考");
+  assert.ok(r.hits[0].doc.nt.includes("软考"), "第一条应是标题命中：" + r.hits[0].doc.ti);
+  const scores = r.hits.map((h) => h.score);
+  assert.deepEqual(scores, [...scores].sort((a, b) => b - a), "结果未按分数降序");
+});
+
+test("搜索：多个词必须同时命中", () => {
+  const both = search(SEARCH_DOCS, "江苏 软考", 100);
+  assert.equal(both.total, 1, "应只命中江苏软考那一个窗口，实际 " + both.total);
+  assert.equal(both.hits[0].doc.id, "ruankao-32");
+});
+
+test("搜索：空词与纯标点返回 0 且不报错", () => {
+  for (const q of ["", "   ", "/／、，。"]) assert.equal(search(SEARCH_DOCS, q).total, 0, JSON.stringify(q));
+});
+
+test("搜索：limit 生效", () => {
+  const r = search(SEARCH_DOCS, "软考", 3);
+  assert.ok(r.total > 3);
+  assert.equal(r.hits.length, 3);
+});
+
+test("搜索：不区分大小写与全半角标点", () => {
+  assert.equal(search(SEARCH_DOCS, "CET-4").total, search(SEARCH_DOCS, "cet4").total);
+  assert.ok(search(SEARCH_DOCS, "kaggle").total > 0);
+  assert.equal(search(SEARCH_DOCS, "ＫＡＧＧＬＥ").total, search(SEARCH_DOCS, "kaggle").total, "全角字母应折成半角");
+});
+
+test("标签索引：cover 全部标签，slug 唯一且纯 ASCII", () => {
+  const idx = buildTagIndex(searchPrograms);
+  assert.ok(idx.length >= 20, "只有 " + idx.length + " 个标签");
+  const slugs = idx.map((t) => t.slug);
+  assert.equal(new Set(slugs).size, slugs.length, "slug 有重复");
+  for (const s of slugs) assert.match(s, /^[a-z0-9-]+$/, "slug 非 ASCII：" + s);
+  for (const t of idx) {
+    assert.equal(t.count, t.items.length, t.tag + " count 与 items 不符");
+    assert.ok(t.count > 0);
+  }
+  const flat = new Set(searchPrograms.flatMap((p) => p.tags ?? []));
+  assert.equal(idx.length, flat.size, "标签数不等");
+});
+
+test("浏览器端 quick.js 的归一化与 lib/search.mjs 一致", () => {
+  const src = readFileSync(path.join(process.cwd(), "site", "assets", "quick.js"), "utf8");
+  const m = src.match(/var PUNCT = (\/.*?\/[gimsuy]*);/);
+  assert.ok(m, "quick.js 里找不到 PUNCT 正则");
+  const re = new RegExp(m[1].slice(1, m[1].lastIndexOf("/")), "g");
+  const cases = ["大学英语四级 / CET-4", "蓝桥杯（软件类）", "A.I. 工具·推荐", "《数模》「美赛」", "  a  b  ", "！？；：", "KAGGLE_平台"];
+  for (const c of cases) {
+    assert.equal(String(c).toLowerCase().replace(re, ""), norm(c), "归一化不一致：" + c);
+  }
 });
 
 console.log("\n\x1b[1m" + pass + " 通过, " + fail + " 失败\x1b[0m\n");

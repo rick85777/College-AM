@@ -11,6 +11,8 @@ import { buildCalendar } from "../lib/ics.mjs";
 import { validateProvinceSignup } from "../lib/province.mjs";
 import { loadAi } from "../lib/ai.mjs";
 import { renderAiPage } from "../lib/ai-page.mjs";
+import { buildDocs, buildTagIndex } from "../lib/search.mjs";
+import { renderSearchPage } from "../lib/search-page.mjs";
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
@@ -55,9 +57,10 @@ function fmtStamp(iso) {
   return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()) + " " + p(d.getHours()) + ":" + p(d.getMinutes());
 }
 
-function layout({ title, description, body, current = "", base = "" }) {
+function layout({ title, description, body, current = "", base = "", extraHead = "" }) {
   const nav = [
     ["index.html", "首页"],
+    ["search.html", "检索"],
     ["calendar.html", "日历"],
     ["certs.html", "考证"],
     ["contests.html", "竞赛"],
@@ -86,6 +89,7 @@ function layout({ title, description, body, current = "", base = "" }) {
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="College-AM">
+${extraHead}
 </head>
 <body>
 <header class="top">
@@ -225,6 +229,7 @@ const heroBody = `
   <div class="cta">
     <a class="btn primary" href="calendar/all.ics">订阅全部日程 (.ics)</a>
     <a class="btn" href="calendar.html">看看日历 →</a>
+    <a class="btn" href="search.html">快速检索 →</a>
   </div>
   <div class="meta">最后构建 ${BUILD_STAMP.slice(0, 10)} · ${STATS.programs} 个条目 · ${STATS.publishedEditions} 个已核实届次</div>
 </section>
@@ -682,6 +687,37 @@ ${JOB_PORTALS.map(
 const AI = await loadAi();
 const aiHtml = renderAiPage(AI, { layout, esc });
 
+// ---------------- 检索索引 ----------------
+const SEARCH_DOCS = buildDocs({ programs, provinceData, aiGroups: AI.groups });
+
+// ---------------- 页面：快速检索 ----------------
+// 五个栏目：关键词 / 时间 / 省份 / 标签 / 方向。
+// 索引在构建期生成，浏览器端只做子串匹配 —— 见 lib/search.mjs 顶部注释。
+const TAG_INDEX = buildTagIndex(programs);
+
+const SEARCH_MODEL = {
+  programs,
+  soon7: upcoming.filter((u) => u.days <= 7),
+  soon30: upcoming.filter((u) => u.days > 7 && u.days <= 30),
+  soon90: upcoming.filter((u) => u.days > 30 && u.days <= 90),
+  provinceChips: provinceData.editions.map((ed) => {
+    const prog = programs.find((p) => p.id === ed.programId);
+    const ws = [...ed.windows].sort((a, b) => a.code.localeCompare(b.code));
+    return {
+      program: prog?.shortName ?? ed.programId,
+      chips: ws.map((w) => ({ province: w.province, code: w.code, pid: ed.programId })),
+    };
+  }),
+  provinceWindows: provinceData.editions.reduce((n, ed) => n + ed.windows.length, 0),
+  tagIndex: TAG_INDEX,
+  majors,
+  docCount: SEARCH_DOCS.length,
+  aiCount: AI.stats.items,
+};
+
+function searchPage() {
+  return renderSearchPage(SEARCH_MODEL, { layout, esc });
+}
 // ---------------- 页面：数据来源 ----------------
 const sourcesPage = layout({
   title: "数据来源与可信等级 · College-AM",
@@ -832,7 +868,7 @@ function provincesPage() {
         <tbody>
         ${ws
           .map(
-            (w) => `<tr>
+            (w) => `<tr id="pv-${esc(ed.programId)}-${esc(w.code)}">
           <td>${esc(w.province)}</td>
           <td class="mono">${w.start} ${w.startTime ?? ""}</td>
           <td class="mono">${w.end} ${w.endTime ?? ""}</td>
@@ -885,6 +921,10 @@ await mkdir(path.join(DIST, "calendar"), { recursive: true });
 await mkdir(path.join(DIST, "assets"), { recursive: true });
 
 await cp(path.join(SITE, "assets", "style.css"), path.join(DIST, "assets", "style.css"));
+await cp(path.join(SITE, "assets", "quick.js"), path.join(DIST, "assets", "quick.js"));
+
+// 检索索引：与页面同版本产出，避免"搜得到但点进去 404"
+await writeFile(path.join(DIST, "search-index.json"), JSON.stringify(SEARCH_DOCS));
 
 // favicon
 await writeFile(
@@ -1013,6 +1053,7 @@ self.addEventListener("fetch", (e) => {
 
 const pages = [
   ["index.html", indexHtml],
+  ["search.html", searchPage()],
   ["calendar.html", calendarPage],
   ["certs.html", listPage("cert", "考证", "学历之外的硬通货。每个条目都标注了报名与考试时间，以及官方原文链接。")],
   ["contests.html", listPage("contest", "竞赛", "对保研、求职真正有用的比赛。按含金量与专业相关度筛选，只收官方主办方。")],
@@ -1113,6 +1154,7 @@ const SITE_ORIGIN = "https://college-am.example"; // 部署时替换为真实域
 await writeFile(path.join(DIST, "robots.txt"), "User-agent: *\nAllow: /\nSitemap: " + SITE_ORIGIN + "/sitemap.xml\n");
 const urls = [
   "",
+  "search.html",
   "calendar.html",
   "certs.html",
   "contests.html",
