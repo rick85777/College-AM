@@ -1018,8 +1018,8 @@ await writeFile(path.join(DIST, "assets", "icon-512.png"), makeIconPng(512));
 // Service Worker：先网后缓存（stale-while-revalidate），离线时回落到缓存
 await writeFile(
   path.join(DIST, "sw.js"),
-  `const CACHE = "college-am-v1";
-const PRECACHE = ["./", "./index.html", "./assets/style.css", "./calendar.html", "./provinces.html"];
+  `const CACHE = "college-am-v2";
+const PRECACHE = ["./", "./index.html", "./assets/style.css", "./calendar.html", "./provinces.html", "./search.html", "./search-index.json"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(PRECACHE)).then(() => self.skipWaiting()));

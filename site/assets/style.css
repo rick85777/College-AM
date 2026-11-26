@@ -501,3 +501,29 @@ tr[id]:target td { box-shadow: inset 0 0 0 1px var(--accent); }
   .tagrow { display: block; }
   .taglinks { margin-top: 5px; }
 }
+
+/* 栏目跳转条：五个栏目都在一页里，先给个全局地图再往下滚 */
+.qjump {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+  margin: 18px 0 26px; padding: 0; list-style: none;
+}
+.qjump a {
+  display: block; padding: 11px 12px; background: var(--paper-2);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  transition: border-color .15s, background .15s;
+}
+.qjump a:hover { border-color: var(--accent); background: var(--accent-soft); }
+.qjump b { display: block; font-size: 13.5px; font-weight: 620; color: var(--ink); margin-bottom: 3px; }
+.qjump span { display: block; font-size: 11.5px; line-height: 1.45; color: var(--ink-3); }
+@media (max-width: 900px) { .qjump { grid-template-columns: repeat(2, 1fr); } }
+/* 手机上改成一行横滑：五个词是导航，不该吃掉一整屏 */
+@media (max-width: 560px) {
+  .qjump {
+    display: flex; overflow-x: auto; gap: 6px; margin: 14px 0 22px;
+    padding-bottom: 2px; scrollbar-width: none;
+  }
+  .qjump::-webkit-scrollbar { display: none; }
+  .qjump a { flex: 0 0 auto; padding: 8px 13px; }
+  .qjump b { margin-bottom: 0; font-size: 13px; }
+  .qjump span { display: none; }
+}
