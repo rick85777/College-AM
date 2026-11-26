@@ -1,5 +1,11 @@
 # College-AM
 
+[![CI](https://github.com/rick85777/College-AM/actions/workflows/ci.yml/badge.svg)](https://github.com/rick85777/College-AM/actions/workflows/ci.yml)
+[![部署](https://github.com/rick85777/College-AM/actions/workflows/pages.yml/badge.svg)](https://github.com/rick85777/College-AM/actions/workflows/pages.yml)
+[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-1f6f5c.svg)](LICENSE)
+
+**在线站点：<https://rick85777.github.io/College-AM/>**
+
 > 把散落在 6 个官网里的四六级、计算机等级、教资、软考、数模、国创赛关键日期，收进一份可以订阅的日历。
 > 每条都标注**来源链接 / 抓取时间 / 可信等级**。不写"预计"，不猜日期——官方没公布就显示"未公布"。
 >
